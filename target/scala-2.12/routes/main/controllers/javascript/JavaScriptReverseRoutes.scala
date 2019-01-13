@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/aidan/Documents/Aidana/Fh/5thSemester/SmartCity/MessMa/MessMaBackendCode/conf/routes
-// @DATE:Sat Jan 12 15:56:27 CET 2019
+// @DATE:Sun Jan 13 14:42:53 CET 2019
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -32,7 +32,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:22
+  // @LINE:23
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -40,7 +40,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:22
+    // @LINE:23
     def at: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.at",
       """
@@ -50,7 +50,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:23
+    // @LINE:24
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
@@ -166,6 +166,16 @@ package controllers.javascript {
       """
         function(mac0) {
           return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "api/getAccessPoint/byMac/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[java.util.UUID]].javascriptUnbind + """)("mac", mac0))})
+        }
+      """
+    )
+  
+    // @LINE:20
+    def getAllGridAccessPoints: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.DevelopersApiController.getAllGridAccessPoints",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "api/getAllGridAcessPoints"})
         }
       """
     )

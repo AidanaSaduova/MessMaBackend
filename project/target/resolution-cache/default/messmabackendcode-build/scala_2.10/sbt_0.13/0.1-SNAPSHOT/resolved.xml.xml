@@ -4,7 +4,7 @@
 		module="messmabackendcode-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20190112155557"
+		publication="20190113134358"
 		e:sbtVersion="0.13" e:scalaVersion="2.10"
 	>
 		<description>

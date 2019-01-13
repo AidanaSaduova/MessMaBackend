@@ -4,7 +4,7 @@
 		module="swagger-java-playframework_2.12"
 		revision="1.0-SNAPSHOT"
 		status="integration"
-		publication="20190112155618"
+		publication="20190113134423"
 	>
 		<description>
 		swagger-java-playframework

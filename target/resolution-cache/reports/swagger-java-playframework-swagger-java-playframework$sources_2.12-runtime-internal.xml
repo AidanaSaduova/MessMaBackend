@@ -7,7 +7,7 @@
 		revision="1.0-SNAPSHOT"
 		conf="runtime-internal"
 		confs="universal, universal-docs, universal-src, compile, runtime, test, provided, optional, windows, docker, linux, rpm, debian, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20190112153726"/>
+		date="20190113122741"/>
 	<dependencies>
 		<module organisation="com.typesafe.play" name="play-logback_2.12">
 			<revision name="2.6.9" status="release" pubdate="20171209015011" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://playframework.com" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="71">

@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/aidan/Documents/Aidana/Fh/5thSemester/SmartCity/MessMa/MessMaBackendCode/conf/routes
-// @DATE:Sat Jan 12 15:56:27 CET 2019
+// @DATE:Sun Jan 13 14:42:53 CET 2019
 
 package controllers;
 
