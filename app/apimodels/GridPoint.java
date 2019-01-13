@@ -42,6 +42,9 @@ public class GridPoint  extends Model {
 
 
 
+
+
+
   public static List<GridPoint> getGridPoints(){
     List<GridPoint> gridPointList = GridPoint.find.all();
 

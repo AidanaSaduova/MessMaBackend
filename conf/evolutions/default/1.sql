@@ -10,6 +10,12 @@ create table accesspoints (
   constraint pk_accesspoints primary key (_id_mac)
 );
 
+create table grid_has_accespoints (
+  fk_id_gridpoint               integer,
+  fk_id_mac                     varchar(255),
+  signal_power                  integer
+);
+
 create table gridpoints (
   _id_grid_point                integer auto_increment not null,
   pos_x                         integer not null,
@@ -25,6 +31,10 @@ create table stands (
   constraint pk_stands primary key (_id_stand)
 );
 
+create table vectors (
+  distance                      integer
+);
+
 alter table gridpoints add constraint fk_gridpoints__id_grid_point foreign key (_id_grid_point) references stands (_id_stand) on delete restrict on update restrict;
 
 
@@ -34,7 +44,11 @@ alter table gridpoints drop foreign key fk_gridpoints__id_grid_point;
 
 drop table if exists accesspoints;
 
+drop table if exists grid_has_accespoints;
+
 drop table if exists gridpoints;
 
 drop table if exists stands;
+
+drop table if exists vectors;
 

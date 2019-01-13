@@ -2,7 +2,12 @@ package apimodels;
 
 import apimodels.GridPoint;
 import com.fasterxml.jackson.annotation.*;
+import io.ebean.Finder;
+import io.ebean.Model;
+
+import java.util.List;
 import java.util.Set;
+import javax.persistence.*;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;

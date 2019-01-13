@@ -1,13 +1,10 @@
 package controllers;
 
-import apimodels.AccessPoint;
-import apimodels.GridPoint;
-import apimodels.Stand;
+import apimodels.*;
 
 import java.util.*;
 
 import apimodels.Vector;
-
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -25,7 +22,6 @@ import play.Configuration;
 import swagger.SwaggerUtils.ApiAction;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-01-12T15:21:03.989+01:00")
-
 public class DevelopersApiController extends Controller {
 
     private final DevelopersApiControllerImpInterface imp;
@@ -79,6 +75,14 @@ public class DevelopersApiController extends Controller {
 
         List<Stand> standList = Stand.getStands();
         return ok(Json.toJson(standList));
+    }
+
+
+    @ApiAction
+    public Result getAllGridAccessPoints() throws Exception {
+
+        List<GridAccessPoint> gridAccessPointList = GridAccessPoint.getGridAccespoints();
+        return ok(Json.toJson(gridAccessPointList));
     }
 
     @ApiAction
