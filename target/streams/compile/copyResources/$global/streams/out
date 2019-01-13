@@ -1,7 +1,0 @@
-[debug] Copy resource mappings: 
-[debug] 	(C:\Users\aidan\Documents\Aidana\Fh\5thSemester\SmartCity\MessMa\MessMaBackendCode\conf\application.conf,C:\Users\aidan\Documents\Aidana\Fh\5thSemester\SmartCity\MessMa\MessMaBackendCode\target\scala-2.12\classes\application.conf)
-[debug] 	(C:\Users\aidan\Documents\Aidana\Fh\5thSemester\SmartCity\MessMa\MessMaBackendCode\conf\evolutions,C:\Users\aidan\Documents\Aidana\Fh\5thSemester\SmartCity\MessMa\MessMaBackendCode\target\scala-2.12\classes\evolutions)
-[debug] 	(C:\Users\aidan\Documents\Aidana\Fh\5thSemester\SmartCity\MessMa\MessMaBackendCode\conf\logback.xml,C:\Users\aidan\Documents\Aidana\Fh\5thSemester\SmartCity\MessMa\MessMaBackendCode\target\scala-2.12\classes\logback.xml)
-[debug] 	(C:\Users\aidan\Documents\Aidana\Fh\5thSemester\SmartCity\MessMa\MessMaBackendCode\conf\routes,C:\Users\aidan\Documents\Aidana\Fh\5thSemester\SmartCity\MessMa\MessMaBackendCode\target\scala-2.12\classes\routes)
-[debug] 	(C:\Users\aidan\Documents\Aidana\Fh\5thSemester\SmartCity\MessMa\MessMaBackendCode\conf\evolutions\default,C:\Users\aidan\Documents\Aidana\Fh\5thSemester\SmartCity\MessMa\MessMaBackendCode\target\scala-2.12\classes\evolutions\default)
-[debug] 	(C:\Users\aidan\Documents\Aidana\Fh\5thSemester\SmartCity\MessMa\MessMaBackendCode\conf\evolutions\default\1.sql,C:\Users\aidan\Documents\Aidana\Fh\5thSemester\SmartCity\MessMa\MessMaBackendCode\target\scala-2.12\classes\evolutions\default\1.sql)

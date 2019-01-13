@@ -1,13 +1,10 @@
 package controllers;
 
-import apimodels.AccessPoint;
-import apimodels.GridPoint;
-import apimodels.Stand;
+import apimodels.*;
 
 import java.util.*;
 
 import apimodels.Vector;
-
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -110,7 +107,8 @@ public class DevelopersApiController extends Controller {
 
     @ApiAction
     public Result getAllStands() throws Exception {
-        JsonNode nodestand = request().body().asJson();
+
+/*JsonNode nodestand = request().body().asJson();
         Stand stand;
         if (nodestand != null) {
             stand = mapper.readValue(nodestand.toString(), Stand.class);
@@ -127,8 +125,20 @@ public class DevelopersApiController extends Controller {
             }
         }
         JsonNode result = mapper.valueToTree(obj);
-        return ok(result);
+        return ok(result);*/
+        List<Stand> standList = Stand.getStands();
+        return ok(Json.toJson(standList));
     }
+
+    @ApiAction
+    public Result getAllGridAccessPoints() throws Exception {
+
+
+        List<GridAccessPoint> gridAccessPointList = GridAccessPoint.getGridAccespoints();
+        return ok(Json.toJson(gridAccessPointList));
+    }
+
+
 
     @ApiAction
     public Result getAllVektors() throws Exception {

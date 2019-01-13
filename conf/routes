@@ -17,6 +17,7 @@ GET     /api/getAllAccessPoints                     controllers.DevelopersApiCon
 GET     /api/getAllGridPoints                     controllers.DevelopersApiController.getAllGridPoints()
 GET     /api/getAllStands                     controllers.DevelopersApiController.getAllStands()
 GET     /api/getAllVektors                     controllers.DevelopersApiController.getAllVektors()
+GET     /api/getAllGridAcessPoints                     controllers.DevelopersApiController.getAllGridAccessPoints()
 
 # Map static resources from the /public folder to the /assets URL path
 GET /assets/*file           controllers.Assets.at(file)

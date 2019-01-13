@@ -2,7 +2,15 @@ package apimodels;
 
 import apimodels.GridPoint;
 import com.fasterxml.jackson.annotation.*;
+import io.ebean.Finder;
+import io.ebean.Model;
+
+import java.util.List;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
@@ -12,21 +20,37 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-01-12T15:21:03.989+01:00")
 
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
-public class Stand   {
+@Entity
+@Table(name="stands")
+public class Stand  extends Model {
+  public static final Finder<Long, Stand> find = new Finder<>(Stand.class);
+
   @JsonProperty("id")
+  @Id
+  @Column(name="_id_stand")
   private Integer id = null;
 
   @JsonProperty("name")
+  @Column(name="name")
   private String name = null;
 
   @JsonProperty("description")
+  @Column(name="description")
   private String description = null;
 
   @JsonProperty("logo")
+  @Column(name="logo")
   private String logo = null;
 
   @JsonProperty("GridPoint")
+  @Column(name="fk_id_grid_point")
   private GridPoint gridPoint = null;
+
+
+  public static List<Stand> getStands(){
+    List<Stand> standList = Stand.find.all();
+    return standList;
+  }
 
   public Stand id(Integer id) {
     this.id = id;
