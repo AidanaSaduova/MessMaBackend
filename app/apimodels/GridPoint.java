@@ -6,10 +6,7 @@ import io.ebean.Model;
 
 import java.util.List;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
@@ -37,6 +34,9 @@ public class GridPoint  extends Model {
   @Column(name="pos_y", nullable = true)
   private Integer posY = null;
 
+  @OneToOne
+  @JoinColumn(name = "_id_grid_point")
+  private Stand stand;
 
   public static List<GridPoint> getGridPoints(){
     List<GridPoint> gridPointList = GridPoint.find.all();

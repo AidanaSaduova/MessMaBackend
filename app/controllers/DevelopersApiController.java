@@ -25,7 +25,6 @@ import play.Configuration;
 import swagger.SwaggerUtils.ApiAction;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-01-12T15:21:03.989+01:00")
-
 public class DevelopersApiController extends Controller {
 
     private final DevelopersApiControllerImpInterface imp;
@@ -60,24 +59,7 @@ public class DevelopersApiController extends Controller {
 
     @ApiAction
     public Result getAllAccessPoints() throws Exception {
-        /*JsonNode nodeaccessPoint = request().body().asJson();
-        AccessPoint accessPoint;
-        if (nodeaccessPoint != null) {
-            accessPoint = mapper.readValue(nodeaccessPoint.toString(), AccessPoint.class);
-            if (configuration.getBoolean("useInputBeanValidation")) {
-                SwaggerUtils.validate(accessPoint);
-            }
-        } else {
-            accessPoint = null;
-        }
-        List<AccessPoint> obj = imp.getAllAccessPoints(accessPoint);
-        if (configuration.getBoolean("useOutputBeanValidation")) {
-            for (AccessPoint curItem : obj) {
-                SwaggerUtils.validate(curItem);
-            }
-        }
-        JsonNode result = mapper.valueToTree(obj);
-        return ok(result);*/
+
 
         List<AccessPoint> accessPointList = AccessPoint.getAccespoints();
         return ok(Json.toJson(accessPointList));
@@ -86,69 +68,21 @@ public class DevelopersApiController extends Controller {
 
     @ApiAction
     public Result getAllGridPoints() throws Exception {
-       /* JsonNode nodegridPoint = request().body().asJson();
-        GridPoint gridPoint;
-        if (nodegridPoint != null) {
-            gridPoint = mapper.readValue(nodegridPoint.toString(), GridPoint.class);
-            if (configuration.getBoolean("useInputBeanValidation")) {
-                SwaggerUtils.validate(gridPoint);
-            }
-        } else {
-            gridPoint = null;
-        }
-        List<GridPoint> obj = imp.getAllGridPoints(gridPoint);
-        if (configuration.getBoolean("useOutputBeanValidation")) {
-            for (GridPoint curItem : obj) {
-                SwaggerUtils.validate(curItem);
-            }
-        }
-        JsonNode result = mapper.valueToTree(obj);
-        return ok(result);*/
+
        List<GridPoint> gridPointList = GridPoint.getGridPoints();
        return ok(Json.toJson(gridPointList));
     }
 
     @ApiAction
     public Result getAllStands() throws Exception {
-        JsonNode nodestand = request().body().asJson();
-        Stand stand;
-        if (nodestand != null) {
-            stand = mapper.readValue(nodestand.toString(), Stand.class);
-            if (configuration.getBoolean("useInputBeanValidation")) {
-                SwaggerUtils.validate(stand);
-            }
-        } else {
-            stand = null;
-        }
-        List<Stand> obj = imp.getAllStands(stand);
-        if (configuration.getBoolean("useOutputBeanValidation")) {
-            for (Stand curItem : obj) {
-                SwaggerUtils.validate(curItem);
-            }
-        }
-        JsonNode result = mapper.valueToTree(obj);
-        return ok(result);
+
+        List<Stand> standList = Stand.getStands();
+        return ok(Json.toJson(standList));
     }
 
     @ApiAction
     public Result getAllVektors() throws Exception {
-        JsonNode nodevektor = request().body().asJson();
-        Vector vektor;
-        if (nodevektor != null) {
-            vektor = mapper.readValue(nodevektor.toString(), Vector.class);
-            if (configuration.getBoolean("useInputBeanValidation")) {
-                SwaggerUtils.validate(vektor);
-            }
-        } else {
-            vektor = null;
-        }
-        List<Vector> obj = imp.getAllVektors(vektor);
-        if (configuration.getBoolean("useOutputBeanValidation")) {
-            for (Vector curItem : obj) {
-                SwaggerUtils.validate(curItem);
-            }
-        }
-        JsonNode result = mapper.valueToTree(obj);
-        return ok(result);
+
+        return ok();
     }
 }
