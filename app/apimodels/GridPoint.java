@@ -35,6 +35,12 @@ public class GridPoint  extends Model {
   @Column(name="pos_y", nullable = true)
   private Integer posY = null;
 
+  @OneToOne
+  @JoinColumn(name = "_id_grid_point")
+  private Stand stand;
+
+
+
 
 
 

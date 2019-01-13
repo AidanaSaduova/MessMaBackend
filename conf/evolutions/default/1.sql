@@ -35,8 +35,12 @@ create table vectors (
   distance                      integer
 );
 
+alter table gridpoints add constraint fk_gridpoints__id_grid_point foreign key (_id_grid_point) references stands (_id_stand) on delete restrict on update restrict;
+
 
 # --- !Downs
+
+alter table gridpoints drop foreign key fk_gridpoints__id_grid_point;
 
 drop table if exists accesspoints;
 
