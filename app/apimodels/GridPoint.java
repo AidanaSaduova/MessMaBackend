@@ -6,10 +6,7 @@ import io.ebean.Model;
 
 import java.util.List;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
@@ -26,6 +23,7 @@ public class GridPoint  extends Model {
   public static final Finder<Long, GridPoint> find = new Finder<>(GridPoint.class);
   @JsonProperty("id")
   @Id
+//  @OneToMany(mappedBy = "fk_id_gridPoint", cascade = CascadeType.ALL)
   @Column(name="_id_grid_point")
   private Integer id = null;
 
@@ -36,6 +34,9 @@ public class GridPoint  extends Model {
   @JsonProperty("posY")
   @Column(name="pos_y", nullable = true)
   private Integer posY = null;
+
+
+
 
 
   public static List<GridPoint> getGridPoints(){

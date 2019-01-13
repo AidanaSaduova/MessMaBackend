@@ -6,10 +6,7 @@ import io.ebean.Model;
 
 import java.util.List;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
@@ -27,6 +24,7 @@ public class AccessPoint  extends Model {
     public static final Finder<Long, AccessPoint> find = new Finder<>(AccessPoint.class);
   @JsonProperty("mac")
   @Id
+//  @OneToMany(mappedBy = "fk_id_mac", cascade = CascadeType.ALL)
   @Column(name="_id_mac")
   private String mac = null;
 
@@ -37,6 +35,9 @@ public class AccessPoint  extends Model {
   @JsonProperty("activity")
   @Column(name="activity")
   private Boolean activity = null;
+
+
+
 
 
     public static List<AccessPoint> getAccespoints(){

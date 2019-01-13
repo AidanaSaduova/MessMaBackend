@@ -4,7 +4,7 @@
 		module="swagger-java-playframework$sources_2.12"
 		revision="1.0-SNAPSHOT"
 		status="integration"
-		publication="20190112153726"
+		publication="20190113122741"
 	/>
 	<configurations>
 		<conf name="universal" visibility="public" description=""/>

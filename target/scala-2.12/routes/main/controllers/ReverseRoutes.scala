@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/aidan/Documents/Aidana/Fh/5thSemester/SmartCity/MessMa/MessMaBackendCode/conf/routes
-// @DATE:Sat Jan 12 15:56:27 CET 2019
+// @DATE:Sun Jan 13 14:42:53 CET 2019
 
 import play.api.mvc.Call
 
@@ -27,20 +27,20 @@ package controllers {
   
   }
 
-  // @LINE:22
+  // @LINE:23
   class ReverseAssets(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:22
+    // @LINE:23
     def at(file:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[String]].unbind("file", file))
     }
   
-    // @LINE:23
+    // @LINE:24
     def versioned(file:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "versionedAssets/" + implicitly[play.api.mvc.PathBindable[String]].unbind("file", file))
@@ -116,6 +116,12 @@ package controllers {
     def findAccessPointsbyMac(mac:java.util.UUID): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "api/getAccessPoint/byMac/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[java.util.UUID]].unbind("mac", mac)))
+    }
+  
+    // @LINE:20
+    def getAllGridAccessPoints(): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "api/getAllGridAcessPoints")
     }
   
   }
