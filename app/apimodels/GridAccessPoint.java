@@ -3,7 +3,12 @@ package apimodels;
 import apimodels.AccessPoint;
 import apimodels.GridPoint;
 import com.fasterxml.jackson.annotation.*;
+import io.ebean.Finder;
+import io.ebean.Model;
+
+import java.util.List;
 import java.util.Set;
+import javax.persistence.*;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
@@ -13,15 +18,32 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-01-12T15:21:03.989+01:00")
 
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
-public class GridAccessPoint   {
+@Entity
+@Table(name = "grid_has_accespoints")
+public class GridAccessPoint  extends Model {
+  public static final Finder<Long, GridAccessPoint> find = new Finder<>(GridAccessPoint.class);
+ /* @EmbeddedId
+  public Embeddable pk;*/
+//  @ManyToOne(fetch = FetchType.LAZY)
+//  @JoinColumn(name="fk_id_gridPoint",referencedColumnName = "_id_grid_point")
+  @JsonProperty("gridPoint")
+  @Column(name =  "fk_id_gridPoint")
+  private Integer gridPoint = null;
+
+//  @ManyToOne(fetch = FetchType.LAZY)
+//  @JoinColumn(name="fk_id_mac",referencedColumnName = "_id_mac")
+  @JsonProperty("accessPoint")
+  @Column(name = "fk_id_mac")
+  private String accessPoint = null;
+
   @JsonProperty("signal")
+  @Column(name = "signal_power")
   private Integer signal = null;
 
-  @JsonProperty("gridPoint")
-  private GridPoint gridPoint = null;
-
-  @JsonProperty("accessPoint")
-  private AccessPoint accessPoint = null;
+  public static List<GridAccessPoint> getGridAccespoints(){
+    List<GridAccessPoint> gridAccessPointList = GridAccessPoint.find.all();
+    return gridAccessPointList;
+  }
 
   public GridAccessPoint signal(Integer signal) {
     this.signal = signal;
@@ -40,7 +62,7 @@ public class GridAccessPoint   {
     this.signal = signal;
   }
 
-  public GridAccessPoint gridPoint(GridPoint gridPoint) {
+  public GridAccessPoint gridPoint(Integer gridPoint) {
     this.gridPoint = gridPoint;
     return this;
   }
@@ -50,15 +72,15 @@ public class GridAccessPoint   {
    * @return gridPoint
   **/
   @Valid
-  public GridPoint getGridPoint() {
+  public Integer getGridPoint() {
     return gridPoint;
   }
 
-  public void setGridPoint(GridPoint gridPoint) {
+  public void setGridPoint(Integer gridPoint) {
     this.gridPoint = gridPoint;
   }
 
-  public GridAccessPoint accessPoint(AccessPoint accessPoint) {
+  public GridAccessPoint accessPoint(String accessPoint) {
     this.accessPoint = accessPoint;
     return this;
   }
@@ -68,11 +90,11 @@ public class GridAccessPoint   {
    * @return accessPoint
   **/
   @Valid
-  public AccessPoint getAccessPoint() {
+  public String getAccessPoint() {
     return accessPoint;
   }
 
-  public void setAccessPoint(AccessPoint accessPoint) {
+  public void setAccessPoint(String accessPoint) {
     this.accessPoint = accessPoint;
   }
 

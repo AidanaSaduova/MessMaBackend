@@ -2,7 +2,13 @@ package apimodels;
 
 import apimodels.GridPoint;
 import com.fasterxml.jackson.annotation.*;
+import io.ebean.Finder;
+import io.ebean.Model;
+
 import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
@@ -12,8 +18,13 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-01-12T15:21:03.989+01:00")
 
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
-public class Vector   {
+@Entity
+@Table(name = "vectors")
+public class Vector  extends Model {
+  public static final Finder<Long, Vector> find = new Finder<>(Vector.class);
+
   @JsonProperty("distance")
+
   private Integer distance = null;
 
   @JsonProperty("startPoint")
