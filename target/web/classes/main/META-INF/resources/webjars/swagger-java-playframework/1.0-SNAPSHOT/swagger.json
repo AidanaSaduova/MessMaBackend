@@ -1,0 +1,454 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is an API for FH Technikum BWI16 SmartCity IndoorNavigationAPP",
+    "version" : "1.0.0",
+    "title" : "FH Technikum SmartCity IndoorNavigation API",
+    "contact" : {
+      "email" : "wi15b099@technikum-wien.at"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "localhost",
+  "basePath" : "/api",
+  "tags" : [ {
+    "name" : "admins",
+    "description" : "Secured Admin-only calls"
+  }, {
+    "name" : "developers",
+    "description" : "Operations available to regular developer"
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/saveGridPoint" : {
+      "post" : {
+        "tags" : [ "admins" ],
+        "summary" : "adds an inventory item",
+        "description" : "Adds an GridPoint to the DB",
+        "operationId" : "addNewGridPoint",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "GridPoint",
+          "description" : "GridPoint to add",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/GridPoint"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/GridPoint"
+              }
+            }
+          },
+          "201" : {
+            "description" : "item created"
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          }
+        },
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/saveAccessPoint" : {
+      "post" : {
+        "tags" : [ "admins" ],
+        "summary" : "adds an inventory item",
+        "description" : "Adds an AccessPoint to the DB",
+        "operationId" : "addNewAccessPoint",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "AccessPoint",
+          "description" : "AccessPoint to add",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/AccessPoint"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/AccessPoint"
+              }
+            }
+          },
+          "201" : {
+            "description" : "item created"
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          }
+        },
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/getAllGridPoints" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "summary" : "finds all items",
+        "description" : "Gives a list of all GridPoints from DB",
+        "operationId" : "getAllGridPoints",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "GridPoint",
+          "description" : "GridPoints to get",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/GridPoint"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/GridPoint"
+              }
+            }
+          },
+          "202" : {
+            "description" : "items found"
+          },
+          "400" : {
+            "description" : "invalid request"
+          }
+        },
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/getAllAccessPoints" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "summary" : "finds all items",
+        "description" : "Gives a list of all AccessPoints from DB",
+        "operationId" : "getAllAccessPoints",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "AccessPoint",
+          "description" : "AccessPoints to get",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/AccessPoint"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/AccessPoint"
+              }
+            }
+          },
+          "202" : {
+            "description" : "items found"
+          },
+          "400" : {
+            "description" : "invalid request"
+          }
+        },
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/getAllStands" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "summary" : "finds all items",
+        "description" : "Gives a list of all Stands from DB",
+        "operationId" : "getAllStands",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "Stand",
+          "description" : "Stands to get",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Stand"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Stand"
+              }
+            }
+          },
+          "202" : {
+            "description" : "items found"
+          },
+          "400" : {
+            "description" : "invalid request"
+          }
+        },
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/getAllVektors" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "summary" : "finds all items",
+        "description" : "Gives a list of all Vektors from DB",
+        "operationId" : "getAllVektors",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "Vektor",
+          "description" : "Vektors to get",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Vector"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Vector"
+              }
+            }
+          },
+          "202" : {
+            "description" : "items found"
+          },
+          "400" : {
+            "description" : "invalid request"
+          }
+        },
+        "x-contentType" : "application/json",
+        "x-accepts" : "application/json"
+      }
+    },
+    "/getGridPoint/byId/{id}" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "summary" : "finds item from DB",
+        "description" : "Search Grid Points by ID",
+        "operationId" : "findGridPointbyId",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "GridPoint to find",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria"
+          },
+          "202" : {
+            "description" : "item is found"
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          }
+        },
+        "x-accepts" : "application/json"
+      }
+    },
+    "/getStand/byId/{id}" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "summary" : "finds item from DB",
+        "description" : "Search Stands by ID",
+        "operationId" : "findStandbyId",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Stand to find",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria"
+          },
+          "202" : {
+            "description" : "item is found"
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          }
+        },
+        "x-accepts" : "application/json"
+      }
+    },
+    "/getAccessPoint/byMac/{mac}" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "summary" : "finds item from DB",
+        "description" : "Search AccessPoints by mac",
+        "operationId" : "findAccessPointsbyMac",
+        "parameters" : [ {
+          "name" : "mac",
+          "in" : "path",
+          "description" : "AccessPoint to find",
+          "required" : true,
+          "type" : "string",
+          "format" : "uuid"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria"
+          },
+          "202" : {
+            "description" : "item is found"
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          }
+        },
+        "x-accepts" : "application/json"
+      }
+    }
+  },
+  "definitions" : {
+    "GridPoint" : {
+      "type" : "object",
+      "required" : [ "id", "posX", "posY" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer"
+        },
+        "posX" : {
+          "type" : "integer"
+        },
+        "posY" : {
+          "type" : "integer"
+        }
+      },
+      "example" : {
+        "posX" : 6,
+        "posY" : 1,
+        "id" : 0
+      }
+    },
+    "Stand" : {
+      "required" : [ "id" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "logo" : {
+          "type" : "string"
+        },
+        "GridPoint" : {
+          "$ref" : "#/definitions/GridPoint"
+        }
+      },
+      "example" : {
+        "GridPoint" : {
+          "posX" : 6,
+          "posY" : 1,
+          "id" : 0
+        },
+        "name" : "name",
+        "description" : "description",
+        "logo" : "logo",
+        "id" : 0
+      }
+    },
+    "AccessPoint" : {
+      "required" : [ "mac" ],
+      "properties" : {
+        "mac" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "integer"
+        },
+        "activity" : {
+          "type" : "boolean"
+        }
+      },
+      "example" : {
+        "activity" : true,
+        "type" : 0,
+        "mac" : "mac"
+      }
+    },
+    "Vector" : {
+      "properties" : {
+        "distance" : {
+          "type" : "integer"
+        },
+        "startPoint" : {
+          "$ref" : "#/definitions/GridPoint"
+        },
+        "endPoint" : {
+          "$ref" : "#/definitions/GridPoint"
+        }
+      },
+      "example" : {
+        "endPoint" : {
+          "posX" : 6,
+          "posY" : 1,
+          "id" : 0
+        },
+        "distance" : 0,
+        "startPoint" : {
+          "posX" : 6,
+          "posY" : 1,
+          "id" : 0
+        }
+      }
+    },
+    "GridAccessPoint" : {
+      "properties" : {
+        "signal" : {
+          "type" : "integer"
+        },
+        "gridPoint" : {
+          "$ref" : "#/definitions/GridPoint"
+        },
+        "accessPoint" : {
+          "$ref" : "#/definitions/AccessPoint"
+        }
+      }
+    }
+  }
+}
