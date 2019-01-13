@@ -4,12 +4,10 @@ import com.fasterxml.jackson.annotation.*;
 import io.ebean.Finder;
 import io.ebean.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
@@ -37,6 +35,9 @@ public class AccessPoint  extends Model {
   @JsonProperty("activity")
   @Column(name="activity")
   private Boolean activity = null;
+
+  @JsonProperty("signal")
+  private Integer signal = null;
 
 
     public static List<AccessPoint> getAccespoints(){

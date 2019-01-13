@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:C:/Users/aidan/Documents/Aidana/Fh/5thSemester/SmartCity/MessMa/MessMaBackendCode/conf/routes
-// @DATE:Sat Jan 12 15:56:27 CET 2019
+// @SOURCE:C:/Users/Christoph/IdeaProjects/MessMaBackend/conf/routes
+// @DATE:Sun Jan 13 12:40:09 CET 2019
 
 package router
 
@@ -21,7 +21,7 @@ class Routes(
   AdminsApiController_0: controllers.AdminsApiController,
   // @LINE:13
   DevelopersApiController_3: controllers.DevelopersApiController,
-  // @LINE:22
+  // @LINE:23
   Assets_1: controllers.Assets,
   val prefix: String
 ) extends GeneratedRouter {
@@ -34,7 +34,7 @@ class Routes(
     AdminsApiController_0: controllers.AdminsApiController,
     // @LINE:13
     DevelopersApiController_3: controllers.DevelopersApiController,
-    // @LINE:22
+    // @LINE:23
     Assets_1: controllers.Assets
   ) = this(errorHandler, ApiDocController_2, AdminsApiController_0, DevelopersApiController_3, Assets_1, "/")
 
@@ -58,6 +58,7 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/getAllGridPoints""", """controllers.DevelopersApiController.getAllGridPoints()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/getAllStands""", """controllers.DevelopersApiController.getAllStands()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/getAllVektors""", """controllers.DevelopersApiController.getAllVektors()"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """api/getPosition""", """controllers.DevelopersApiController.getPosition()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.at(file:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """versionedAssets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(file:String)"""),
     Nil
@@ -247,11 +248,29 @@ class Routes(
     )
   )
 
-  // @LINE:22
-  private[this] lazy val controllers_Assets_at10_route = Route("GET",
+  // @LINE:20
+  private[this] lazy val controllers_DevelopersApiController_getPosition10_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("api/getPosition")))
+  )
+  private[this] lazy val controllers_DevelopersApiController_getPosition10_invoker = createInvoker(
+    DevelopersApiController_3.getPosition(),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.DevelopersApiController",
+      "getPosition",
+      Nil,
+      "GET",
+      this.prefix + """api/getPosition""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:23
+  private[this] lazy val controllers_Assets_at11_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_at10_invoker = createInvoker(
+  private[this] lazy val controllers_Assets_at11_invoker = createInvoker(
     Assets_1.at(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -265,11 +284,11 @@ class Routes(
     )
   )
 
-  // @LINE:23
-  private[this] lazy val controllers_Assets_versioned11_route = Route("GET",
+  // @LINE:24
+  private[this] lazy val controllers_Assets_versioned12_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("versionedAssets/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_versioned11_invoker = createInvoker(
+  private[this] lazy val controllers_Assets_versioned12_invoker = createInvoker(
     Assets_1.versioned(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -346,16 +365,22 @@ class Routes(
         controllers_DevelopersApiController_getAllVektors9_invoker.call(DevelopersApiController_3.getAllVektors())
       }
   
-    // @LINE:22
-    case controllers_Assets_at10_route(params@_) =>
-      call(params.fromPath[String]("file", None)) { (file) =>
-        controllers_Assets_at10_invoker.call(Assets_1.at(file))
+    // @LINE:20
+    case controllers_DevelopersApiController_getPosition10_route(params@_) =>
+      call { 
+        controllers_DevelopersApiController_getPosition10_invoker.call(DevelopersApiController_3.getPosition())
       }
   
     // @LINE:23
-    case controllers_Assets_versioned11_route(params@_) =>
+    case controllers_Assets_at11_route(params@_) =>
       call(params.fromPath[String]("file", None)) { (file) =>
-        controllers_Assets_versioned11_invoker.call(Assets_1.versioned(file))
+        controllers_Assets_at11_invoker.call(Assets_1.at(file))
+      }
+  
+    // @LINE:24
+    case controllers_Assets_versioned12_route(params@_) =>
+      call(params.fromPath[String]("file", None)) { (file) =>
+        controllers_Assets_versioned12_invoker.call(Assets_1.versioned(file))
       }
   }
 }

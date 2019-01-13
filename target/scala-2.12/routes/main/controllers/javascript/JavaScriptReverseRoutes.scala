@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:C:/Users/aidan/Documents/Aidana/Fh/5thSemester/SmartCity/MessMa/MessMaBackendCode/conf/routes
-// @DATE:Sat Jan 12 15:56:27 CET 2019
+// @SOURCE:C:/Users/Christoph/IdeaProjects/MessMaBackend/conf/routes
+// @DATE:Sun Jan 13 12:40:09 CET 2019
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -32,7 +32,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:22
+  // @LINE:23
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -40,7 +40,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:22
+    // @LINE:23
     def at: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.at",
       """
@@ -50,7 +50,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:23
+    // @LINE:24
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
@@ -106,6 +106,16 @@ package controllers.javascript {
       """
         function(id0) {
           return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "api/getGridPoint/byId/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("id", id0))})
+        }
+      """
+    )
+  
+    // @LINE:20
+    def getPosition: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.DevelopersApiController.getPosition",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "api/getPosition"})
         }
       """
     )

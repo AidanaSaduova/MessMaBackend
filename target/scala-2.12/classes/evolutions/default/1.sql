@@ -7,7 +7,14 @@ create table accesspoints (
   _id_mac                       varchar(255) not null,
   type                          integer,
   activity                      tinyint(1) default 0,
+  signal                        integer,
   constraint pk_accesspoints primary key (_id_mac)
+);
+
+create table grid_has_accespoints (
+  signal_power                  integer,
+  fk_id_gridpoint               integer,
+  fk_id_mac                     varchar(255)
 );
 
 create table gridpoints (
@@ -17,10 +24,22 @@ create table gridpoints (
   constraint pk_gridpoints primary key (_id_grid_point)
 );
 
+create table stands (
+  _id_stand                     integer auto_increment not null,
+  name                          varchar(255),
+  description                   varchar(255),
+  logo                          varchar(255),
+  constraint pk_stands primary key (_id_stand)
+);
+
 
 # --- !Downs
 
 drop table if exists accesspoints;
 
+drop table if exists grid_has_accespoints;
+
 drop table if exists gridpoints;
+
+drop table if exists stands;
 

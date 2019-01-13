@@ -1,13 +1,12 @@
 package controllers;
 
-import apimodels.AccessPoint;
-import apimodels.GridPoint;
-import apimodels.Stand;
+import apimodels.*;
 
 import java.util.*;
 
 import apimodels.Vector;
-
+import com.fasterxml.jackson.databind.ObjectReader;
+import play.Logger;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -16,6 +15,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 import java.io.File;
+
+import scala.util.parsing.json.JSONObject;
+import scala.util.parsing.json.JSONObject$;
 import swagger.SwaggerUtils;
 import com.fasterxml.jackson.core.type.TypeReference;
 
@@ -86,7 +88,7 @@ public class DevelopersApiController extends Controller {
 
     @ApiAction
     public Result getAllGridPoints() throws Exception {
-       /* JsonNode nodegridPoint = request().body().asJson();
+        /*JsonNode nodegridPoint = request().body().asJson();
         GridPoint gridPoint;
         if (nodegridPoint != null) {
             gridPoint = mapper.readValue(nodegridPoint.toString(), GridPoint.class);
@@ -102,15 +104,17 @@ public class DevelopersApiController extends Controller {
                 SwaggerUtils.validate(curItem);
             }
         }
-        JsonNode result = mapper.valueToTree(obj);
-        return ok(result);*/
+        JsonNode result = mapper.valueToTree(obj);*/
+
        List<GridPoint> gridPointList = GridPoint.getGridPoints();
        return ok(Json.toJson(gridPointList));
+
+
     }
 
     @ApiAction
     public Result getAllStands() throws Exception {
-        JsonNode nodestand = request().body().asJson();
+        /*JsonNode nodestand = request().body().asJson();
         Stand stand;
         if (nodestand != null) {
             stand = mapper.readValue(nodestand.toString(), Stand.class);
@@ -127,7 +131,10 @@ public class DevelopersApiController extends Controller {
             }
         }
         JsonNode result = mapper.valueToTree(obj);
-        return ok(result);
+        return ok(result);*/
+
+        List<Stand> standList = Stand.getStands();
+        return ok(Json.toJson(standList));
     }
 
     @ApiAction
@@ -150,5 +157,38 @@ public class DevelopersApiController extends Controller {
         }
         JsonNode result = mapper.valueToTree(obj);
         return ok(result);
+    }
+
+    @ApiAction
+    public Result getPosition() throws Exception {
+
+        JsonNode nodebody = request().body().asJson();
+        ReceivedWantedGridPoint body;
+
+        List<GridAccessPoint> gridAccessPoints = GridAccessPoint.getGridAccessPoints();
+
+       /* if (nodebody != null) {
+            body = mapper.readValue(nodebody.toString(), ReceivedWantedGridPoint.class);
+
+            if (configuration.getBoolean("useInputBeanValidation")) {
+                SwaggerUtils.validate(body);
+            }
+
+        } else {
+            Logger.debug("land in throw new...");
+            throw new IllegalArgumentException("'body' parameter is required");
+
+        }
+
+        Logger.debug("call saveNewLandingPage(body)");
+
+        JsonNode result = mapper.valueToTree(body);
+        ObjectReader reader = mapper.readerFor(new TypeReference<List<ReceivedAccessPoint>>() {
+        });
+        List<ReceivedAccessPoint> receivedSignals = reader.readValue(result.get("ReceivedSignals"));*/
+
+        return ok(Json.toJson(gridAccessPoints));
+
+
     }
 }
