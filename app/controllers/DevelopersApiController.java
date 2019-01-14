@@ -6,6 +6,7 @@ import java.util.*;
 
 import apimodels.Vector;
 import com.fasterxml.jackson.databind.ObjectReader;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import play.Logger;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -57,11 +58,23 @@ public class DevelopersApiController extends Controller {
     }
 
     @ApiAction
+    public Result getTestAPI() throws Exception {
+
+        Logger.debug("Somebody called the TestAPI ().()");
+        return ok("Hy");
+    }
+
+    @ApiAction
     public Result getAllAccessPoints() throws Exception {
 
-
         List<AccessPoint> accessPointList = AccessPoint.getAccespoints();
-        return ok(Json.toJson(accessPointList));
+
+        Logger.debug("Somebody is calling for AccessPoints");
+        String jsonString = "{\"startIndex\": 0, \"data\":" + Json.toJson(accessPointList).toString() + "}";
+        if(jsonString.length() > 50){Logger.debug("JSON done and ready for send");}
+
+        return ok(jsonString);
+
     }
 
 
@@ -69,13 +82,17 @@ public class DevelopersApiController extends Controller {
     public Result getAllGridPoints() throws Exception {
 
        List<GridPoint> gridPointList = GridPoint.getGridPoints();
-       return ok(Json.toJson(gridPointList));
+
+       String jsonString = "{\"startIndex\": 0, \"data\":" + Json.toJson(gridPointList).toString() + "}";
+       return ok(jsonString);
     }
 
     @ApiAction
     public Result getAllStands() throws Exception {
 
         List<Stand> standList = Stand.getStands();
+        //ObjectNode objectNode = new Json.newObject();
+
         return ok(Json.toJson(standList));
     }
 
@@ -122,7 +139,7 @@ public class DevelopersApiController extends Controller {
 
         }
 
-        Logger.debug("call saveNewLandingPage(body)");
+
 
         JsonNode result = mapper.valueToTree(body);
         ObjectReader reader = mapper.readerFor(new TypeReference<List<ReceivedAccessPoint>>() {

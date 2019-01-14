@@ -19,6 +19,8 @@ GET     /api/getAllStands                     controllers.DevelopersApiControlle
 GET     /api/getAllVektors                     controllers.DevelopersApiController.getAllVektors()
 GET     /api/getAllGridAcessPoints                     controllers.DevelopersApiController.getAllGridAccessPoints()
 
+GET     /api/getTestAPI                             controllers.DevelopersApiController.getTestAPI()
+
 GET     /api/getPosition                        controllers.DevelopersApiController.getPosition()
 
 
