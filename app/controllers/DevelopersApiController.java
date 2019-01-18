@@ -91,9 +91,9 @@ public class DevelopersApiController extends Controller {
     public Result getAllStands() throws Exception {
 
         List<Stand> standList = Stand.getStands();
-        //ObjectNode objectNode = new Json.newObject();
+        String jsonString = "{\"startIndex\": 0, \"data\":" + Json.toJson(standList).toString() + "}";
 
-        return ok(Json.toJson(standList));
+        return ok(jsonString);
     }
 
 
@@ -101,7 +101,8 @@ public class DevelopersApiController extends Controller {
     public Result getAllGridAccessPoints() throws Exception {
 
         List<GridAccessPoint> gridAccessPointList = GridAccessPoint.getGridAccespoints();
-        return ok(Json.toJson(gridAccessPointList));
+        String jsonString = "{\"startIndex\": 0, \"data\":" + Json.toJson(gridAccessPointList).toString() + "}";
+        return ok(jsonString);
     }
 
     @ApiAction
