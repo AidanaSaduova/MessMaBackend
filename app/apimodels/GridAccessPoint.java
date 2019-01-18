@@ -22,8 +22,7 @@ import javax.validation.constraints.*;
 @Table(name = "grid_has_accespoints")
 public class GridAccessPoint  extends Model {
   public static final Finder<Long, GridAccessPoint> find = new Finder<>(GridAccessPoint.class);
- /* @EmbeddedId
-  public Embeddable pk;*/
+
 //  @ManyToOne(fetch = FetchType.LAZY)
 //  @JoinColumn(name="fk_id_gridPoint",referencedColumnName = "_id_grid_point")
   @JsonProperty("gridPoint")
