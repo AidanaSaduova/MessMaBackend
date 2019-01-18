@@ -13,8 +13,8 @@
         <entry key="root">
           <value>
             <ProjectSettingsEntry>
-              <option name="sourceDir" value="C:\Users\aidan\Documents\Aidana\Fh\5thSemester\SmartCity\MessMa\MessMaBackendCode\app" />
-              <option name="confDir" value="C:\_Dev\InteliJ\MessMaBackend\app" />
+              <option name="sourceDir" value="C:\_Dev\InteliJ\MessMaBackend\app" />
+              <option name="confDir" value="C:\Users\aidan\Documents\Aidana\Fh\5thSemester\SmartCity\MessMa\MessMaBackendCode\app" />
               <option name="templateImports">
                 <list>
                   <option value="_root_.play.twirl.api.TwirlFeatureImports._" />
@@ -45,7 +45,7 @@
                   <option value="play.libs.F" />
                 </list>
               </option>
-              <option name="uri" value="/C:/_Dev/InteliJ/MessMaBackend" />
+              <option name="uri" value="/C:/Users/aidan/Documents/Aidana/Fh/5thSemester/SmartCity/MessMa/MessMaBackendCode" />
             </ProjectSettingsEntry>
           </value>
         </entry>
