@@ -182,4 +182,23 @@ public class DevelopersApiController extends Controller {
         return ok(Json.toJson(help));
     }
 
+
+
+    // Update GridAccessPoint
+
+    public Result updateGridAccessPoint() throws  Exception{
+        JsonNode nodebody = request().body().asJson();
+        GridAccessPoint tempPoint;
+        if(nodebody!=null){
+           // System.out.println(nodebody.toString());
+            tempPoint = mapper.readValue(nodebody.toString(),GridAccessPoint.class);
+           // System.out.println(tempPoint.toString());
+            System.out.println(tempPoint.updateGridAccessPoint());
+
+            return ok(Json.toJson(tempPoint.updateGridAccessPoint()));
+        }
+
+        return ok("updateAccespointGrindpoint");
+    }
+
 }

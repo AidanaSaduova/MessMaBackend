@@ -1,13 +1,8 @@
-2019-01-18 13:23:29,928 [INFO] from application in play-dev-mode-akka.actor.default-dispatcher-3 - Creating Pool for datasource 'default'
-2019-01-18 13:23:30,280 [INFO] from play.api.db.DefaultDBApi in play-dev-mode-akka.actor.default-dispatcher-3 - Database [default] connected at jdbc:mysql://localhost/messmadb
-2019-01-18 13:23:30,880 [WARN] from io.ebeaninternal.server.deploy.BeanDescriptorManager in play-dev-mode-akka.actor.default-dispatcher-3 - Bean [apimodels.Vector] has no unique id set
-2019-01-18 13:23:30,882 [WARN] from io.ebeaninternal.server.deploy.BeanDescriptorManager in play-dev-mode-akka.actor.default-dispatcher-3 - Bean [apimodels.GridAccessPoint] has no unique id set
-2019-01-18 13:23:31,469 [WARN] from application in play-dev-mode-akka.actor.default-dispatcher-3 - Using the following cache for assets configuration:
-2019-01-13 23:07:16,135 [INFO] from application in play-dev-mode-akka.actor.default-dispatcher-6 - Creating Pool for datasource 'default'
-2019-01-13 23:07:16,410 [INFO] from play.api.db.DefaultDBApi in play-dev-mode-akka.actor.default-dispatcher-6 - Database [default] connected at jdbc:mysql://localhost/messmadb
-2019-01-13 23:07:17,002 [WARN] from io.ebeaninternal.server.deploy.BeanDescriptorManager in play-dev-mode-akka.actor.default-dispatcher-6 - Bean [apimodels.GridAccessPoint] has no unique id set
-2019-01-13 23:07:17,005 [WARN] from io.ebeaninternal.server.deploy.BeanDescriptorManager in play-dev-mode-akka.actor.default-dispatcher-6 - Bean [apimodels.Vector] has no unique id set
-2019-01-13 23:07:17,489 [WARN] from application in play-dev-mode-akka.actor.default-dispatcher-6 - Using the following cache for assets configuration:
+2019-01-18 17:24:02,488 [INFO] from application in play-dev-mode-akka.actor.default-dispatcher-3 - Creating Pool for datasource 'default'
+2019-01-18 17:24:02,859 [INFO] from play.api.db.DefaultDBApi in play-dev-mode-akka.actor.default-dispatcher-3 - Database [default] connected at jdbc:mysql://localhost/messmadb
+2019-01-18 17:24:03,609 [WARN] from io.ebeaninternal.server.deploy.BeanDescriptorManager in play-dev-mode-akka.actor.default-dispatcher-3 - Bean [apimodels.GridAccessPoint] has no unique id set
+2019-01-18 17:24:03,609 [WARN] from io.ebeaninternal.server.deploy.BeanDescriptorManager in play-dev-mode-akka.actor.default-dispatcher-3 - Bean [apimodels.Vector] has no unique id set
+2019-01-18 17:24:04,385 [WARN] from application in play-dev-mode-akka.actor.default-dispatcher-3 - Using the following cache for assets configuration:
 	 enabledCaching = false
 	 enabledCacheControl = false
 	 defaultCacheControl = public, max-age=3600
@@ -15,77 +10,10 @@
 	 configuredCacheControl:
 
 
-2019-01-18 13:23:31,681 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-3 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
-2019-01-13 23:07:17,593 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-6 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2019-01-18 17:24:04,555 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-3 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
 
-2019-01-18 13:23:31,707 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-3 - Application started (Dev)
-2019-01-18 13:24:02,480 [WARN] from play.api.mvc.DefaultUrlEncodedCookieDataCodec in play-dev-mode-akka.actor.default-dispatcher-8 - Cookie failed message authentication check
-2019-01-13 23:07:17,598 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-6 - Application started (Dev)
-2019-01-13 23:07:17,786 [WARN] from play.api.mvc.DefaultJWTCookieDataCodec in play-dev-mode-akka.actor.default-dispatcher-6 - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
-2019-01-13 23:07:17,788 [INFO] from play.api.mvc.DefaultJWTCookieDataCodec in play-dev-mode-akka.actor.default-dispatcher-6 - The JWT signature in the cookie does not match the locally computed signature with the server.
-This usually indicates the browser has a leftover cookie from another Play application,
-so clearing cookies may resolve this error message.
-2019-01-13 23:07:17,984 [DEBUG] from application in play-dev-mode-akka.actor.default-dispatcher-6 - Somebody is calling for AccessPoints
-2019-01-13 23:07:18,020 [DEBUG] from application in play-dev-mode-akka.actor.default-dispatcher-6 - JSON done and ready for send
-2019-01-13 23:10:36,085 [INFO] from application in application-akka.actor.default-dispatcher-2 - Shutting down connection pool.
-2019-01-13 23:10:36,298 [INFO] from application in play-dev-mode-akka.actor.default-dispatcher-4 - Creating Pool for datasource 'default'
-2019-01-13 23:10:36,310 [INFO] from play.api.db.DefaultDBApi in play-dev-mode-akka.actor.default-dispatcher-4 - Database [default] connected at jdbc:mysql://localhost/messmadb
-2019-01-13 23:10:36,354 [WARN] from io.ebeaninternal.server.deploy.BeanDescriptorManager in play-dev-mode-akka.actor.default-dispatcher-4 - Bean [apimodels.GridAccessPoint] has no unique id set
-2019-01-13 23:10:36,355 [WARN] from io.ebeaninternal.server.deploy.BeanDescriptorManager in play-dev-mode-akka.actor.default-dispatcher-4 - Bean [apimodels.Vector] has no unique id set
-2019-01-13 23:10:36,419 [WARN] from application in play-dev-mode-akka.actor.default-dispatcher-4 - Using the following cache for assets configuration:
-	 enabledCaching = false
-	 enabledCacheControl = false
-	 defaultCacheControl = public, max-age=3600
-	 aggressiveCacheControl = public, max-age=31536000, immutable
-	 configuredCacheControl:
-
-
-2019-01-13 23:10:36,551 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-4 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
-
-    play.filters.csrf.CSRFFilter
-    play.filters.headers.SecurityHeadersFilter
-    play.filters.hosts.AllowedHostsFilter
-
-2019-01-13 23:10:36,551 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-4 - Application started (Dev)
-2019-01-13 23:10:36,568 [WARN] from play.api.mvc.DefaultJWTCookieDataCodec in play-dev-mode-akka.actor.default-dispatcher-4 - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
-2019-01-13 23:10:36,568 [INFO] from play.api.mvc.DefaultJWTCookieDataCodec in play-dev-mode-akka.actor.default-dispatcher-4 - The JWT signature in the cookie does not match the locally computed signature with the server.
-This usually indicates the browser has a leftover cookie from another Play application,
-so clearing cookies may resolve this error message.
-2019-01-13 23:12:40,367 [INFO] from application in application-akka.actor.default-dispatcher-6 - Shutting down connection pool.
-2019-01-13 23:12:40,586 [INFO] from application in play-dev-mode-akka.actor.default-dispatcher-14 - Creating Pool for datasource 'default'
-2019-01-13 23:12:40,601 [INFO] from play.api.db.DefaultDBApi in play-dev-mode-akka.actor.default-dispatcher-14 - Database [default] connected at jdbc:mysql://localhost/messmadb
-2019-01-13 23:12:40,641 [WARN] from io.ebeaninternal.server.deploy.BeanDescriptorManager in play-dev-mode-akka.actor.default-dispatcher-14 - Bean [apimodels.Vector] has no unique id set
-2019-01-13 23:12:40,642 [WARN] from io.ebeaninternal.server.deploy.BeanDescriptorManager in play-dev-mode-akka.actor.default-dispatcher-14 - Bean [apimodels.GridAccessPoint] has no unique id set
-2019-01-13 23:12:40,698 [WARN] from application in play-dev-mode-akka.actor.default-dispatcher-14 - Using the following cache for assets configuration:
-	 enabledCaching = false
-	 enabledCacheControl = false
-	 defaultCacheControl = public, max-age=3600
-	 aggressiveCacheControl = public, max-age=31536000, immutable
-	 configuredCacheControl:
-
-
-2019-01-13 23:12:40,814 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-14 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
-
-    play.filters.csrf.CSRFFilter
-    play.filters.headers.SecurityHeadersFilter
-    play.filters.hosts.AllowedHostsFilter
-
-2019-01-13 23:12:40,814 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-14 - Application started (Dev)
-2019-01-13 23:12:40,837 [WARN] from play.api.mvc.DefaultJWTCookieDataCodec in play-dev-mode-akka.actor.default-dispatcher-14 - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
-2019-01-13 23:12:40,837 [INFO] from play.api.mvc.DefaultJWTCookieDataCodec in play-dev-mode-akka.actor.default-dispatcher-14 - The JWT signature in the cookie does not match the locally computed signature with the server.
-This usually indicates the browser has a leftover cookie from another Play application,
-so clearing cookies may resolve this error message.
-2019-01-13 23:12:40,842 [DEBUG] from application in play-dev-mode-akka.actor.default-dispatcher-14 - Somebody called the TestAPI ().()
-2019-01-13 23:17:01,754 [DEBUG] from application in play-dev-mode-akka.actor.default-dispatcher-12 - Somebody called the TestAPI ().()
-2019-01-13 23:18:30,725 [DEBUG] from application in play-dev-mode-akka.actor.default-dispatcher-26 - Somebody is calling for AccessPoints
-2019-01-13 23:18:30,728 [DEBUG] from application in play-dev-mode-akka.actor.default-dispatcher-26 - JSON done and ready for send
-2019-01-13 23:19:06,324 [DEBUG] from application in play-dev-mode-akka.actor.default-dispatcher-27 - Somebody is calling for AccessPoints
-2019-01-13 23:19:06,325 [DEBUG] from application in play-dev-mode-akka.actor.default-dispatcher-27 - JSON done and ready for send
-2019-01-13 23:19:16,067 [DEBUG] from application in play-dev-mode-akka.actor.default-dispatcher-25 - Somebody is calling for AccessPoints
-2019-01-13 23:19:16,067 [DEBUG] from application in play-dev-mode-akka.actor.default-dispatcher-25 - JSON done and ready for send
-2019-01-13 23:30:49,235 [INFO] from play.core.server.AkkaHttpServer in pool-6-thread-2 - Stopping server...
-2019-01-13 23:30:49,280 [INFO] from application in application-akka.actor.default-dispatcher-5 - Shutting down connection pool.
+2019-01-18 17:24:04,559 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-3 - Application started (Dev)

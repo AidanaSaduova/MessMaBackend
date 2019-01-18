@@ -3,12 +3,12 @@ package apimodels;
 import apimodels.AccessPoint;
 import apimodels.GridPoint;
 import com.fasterxml.jackson.annotation.*;
-import io.ebean.Finder;
-import io.ebean.Model;
+import io.ebean.*;
 
 import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
+import javax.persistence.Query;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
@@ -27,21 +27,39 @@ public class GridAccessPoint  extends Model {
 //  @JoinColumn(name="fk_id_gridPoint",referencedColumnName = "_id_grid_point")
   @JsonProperty("gridPoint")
   @Column(name =  "fk_id_gridPoint")
-  private Integer gridPoint = null;
+  private static Integer gridPoint = null;
 
 //  @ManyToOne(fetch = FetchType.LAZY)
 //  @JoinColumn(name="fk_id_mac",referencedColumnName = "_id_mac")
   @JsonProperty("accessPoint")
   @Column(name = "fk_id_mac")
-  private String accessPoint = null;
+  private static String accessPoint = null;
 
   @JsonProperty("signal")
   @Column(name = "signal_power")
-  private Integer signal = null;
+  private static Integer signal = null;
 
   public static List<GridAccessPoint> getGridAccespoints(){
     List<GridAccessPoint> gridAccessPointList = GridAccessPoint.find.all();
     return gridAccessPointList;
+  }
+
+
+  public GridAccessPoint updateGridAccessPoint()
+  {
+    EbeanServer server = Ebean.getDefaultServer();
+    //this.toString();
+    GridAccessPoint tempGAP = server.find(GridAccessPoint.class).where().like("fk_id_gridPoint", gridPoint.toString()).findOne();
+
+
+    GridAccessPoint temp = Ebean.find(GridAccessPoint.class).where().eq("gridPoint",gridPoint).findOne();
+    if(this.equals(temp))
+
+      return temp;
+
+//    System.out.println(tempGAP.toString());
+   return this;
+
   }
 
   public GridAccessPoint signal(Integer signal) {
