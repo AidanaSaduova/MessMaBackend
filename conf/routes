@@ -18,6 +18,7 @@ GET     /api/getAllGridPoints                     controllers.DevelopersApiContr
 GET     /api/getAllStands                     controllers.DevelopersApiController.getAllStands()
 GET     /api/getAllVektors                     controllers.DevelopersApiController.getAllVektors()
 GET     /api/getAllGridAcessPoints                     controllers.DevelopersApiController.getAllGridAccessPoints()
+POST     /api/updateGpAP                     controllers.DevelopersApiController.updateGridAccessPoint()
 
 GET     /api/getTestAPI                             controllers.DevelopersApiController.getTestAPI()
 
