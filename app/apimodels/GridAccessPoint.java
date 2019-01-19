@@ -20,7 +20,7 @@ import javax.validation.constraints.*;
 
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 @Entity
-@Table(name = "grid_has_accespoints")
+@Table(name = "grid_has_accesspoints")
 public class GridAccessPoint  extends Model {
   public static final Finder<Long, GridAccessPoint> find = new Finder<>(GridAccessPoint.class);
 
@@ -52,16 +52,15 @@ public class GridAccessPoint  extends Model {
   public void updateGridAccessPoint()
   {
     Logger.debug(this.toString());
-    EbeanServer server = Ebean.getDefaultServer();
+    //EbeanServer server = Ebean.getDefaultServer();
 
     this.pk_gap = this.gridPoint+"-"+this.accessPoint;
-    /**
+
     GridAccessPoint temp = Ebean.find(GridAccessPoint.class, pk_gap);
     if(temp!=null)
     {
       Ebean.update(this);
     }else
-     */
       Ebean.save(this);
 
   }

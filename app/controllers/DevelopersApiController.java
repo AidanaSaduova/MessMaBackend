@@ -201,15 +201,16 @@ public class DevelopersApiController extends Controller {
             JsonNode result = mapper.valueToTree(body);
             ObjectReader reader = mapper.readerFor(new TypeReference<List<ReceivedAccessPoint>>(){ });
             List<ReceivedAccessPoint> receivedSignals = reader.readValue(result.get("ReceivedSignals"));
+            String gridPoint = result.get("destination").textValue();
 
             for (ReceivedAccessPoint tempPoint: receivedSignals) {
                 System.out.println("for each....");
                 GridAccessPoint tempACS = new GridAccessPoint();
                 //tempACS.setGridPoint(reader.readValue(result.get("destination")));
-                tempACS.setGridPoint("10J");
+                tempACS.setGridPoint(gridPoint);
                 tempACS.setAccessPoint(tempPoint.getMac());
                 tempACS.setSignal(tempPoint.getPower());
-                tempACS.toString();
+
                 tempACS.updateGridAccessPoint();
             }
 
