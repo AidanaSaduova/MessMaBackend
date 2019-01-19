@@ -32,17 +32,20 @@ private  String pk_gap = null;
 
   @JsonProperty("gridPoint")
   @Column(name =  "fk_id_gridPoint")
-  private  Integer gridPoint = null;
+  private Integer gridPoint = null;
+
 
 //  @ManyToOne(fetch = FetchType.LAZY)
 //  @JoinColumn(name="fk_id_mac",referencedColumnName = "_id_mac")
   @JsonProperty("accessPoint")
   @Column(name = "fk_id_mac")
+
   private  String accessPoint = null;
 
   @JsonProperty("signal")
   @Column(name = "signal_power")
   private  Integer signal = null;
+
 
   public static List<GridAccessPoint> getGridAccespoints(){
     List<GridAccessPoint> gridAccessPointList = GridAccessPoint.find.all();
@@ -53,6 +56,7 @@ private  String pk_gap = null;
   public void updateGridAccessPoint()
   {
     EbeanServer server = Ebean.getDefaultServer();
+
      this.pk_gap = this.gridPoint+"-"+this.accessPoint;
     GridAccessPoint temp = Ebean.find(GridAccessPoint.class, pk_gap);
     if(temp!=null)
@@ -60,6 +64,7 @@ private  String pk_gap = null;
       Ebean.update(this);
     }else
       Ebean.save(this);
+
   }
 
   public GridAccessPoint signal(Integer signal) {
