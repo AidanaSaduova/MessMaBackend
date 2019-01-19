@@ -101,8 +101,8 @@ public class DevelopersApiController extends Controller {
     public Result getAllGridAccessPoints() throws Exception {
 
         List<GridAccessPoint> gridAccessPointList = GridAccessPoint.getGridAccespoints();
-        String jsonString = "{\"startIndex\": 0, \"data\":" + Json.toJson(gridAccessPointList).toString() + "}";
-        return ok(jsonString);
+       // String jsonString = "{\"startIndex\": 0, \"data\":" + Json.toJson(gridAccessPointList).toString() + "}";
+        return ok(Json.toJson(gridAccessPointList));
     }
 
     @ApiAction
@@ -188,15 +188,33 @@ public class DevelopersApiController extends Controller {
 
     public Result updateGridAccessPoint() throws  Exception{
         JsonNode nodebody = request().body().asJson();
-        GridAccessPoint tempPoint;
-        if(nodebody!=null){
-           // System.out.println(nodebody.toString());
-            tempPoint = mapper.readValue(nodebody.toString(),GridAccessPoint.class);
-           // System.out.println(tempPoint.toString());
-            System.out.println(tempPoint.updateGridAccessPoint());
+        ReceivedWantedGridPoint body;
 
-            return ok(Json.toJson(tempPoint.updateGridAccessPoint()));
+        if (nodebody != null) {
+            System.out.println("nodebody != null");
+            body = mapper.readValue(nodebody.toString(), ReceivedWantedGridPoint.class);
+
+            JsonNode result = mapper.valueToTree(body);
+            ObjectReader reader = mapper.readerFor(new TypeReference<List<ReceivedAccessPoint>>(){ });
+            List<ReceivedAccessPoint> receivedSignals = reader.readValue(result.get("ReceivedSignals"));
+
+            for (ReceivedAccessPoint tempPoint: receivedSignals) {
+                System.out.println("for each....");
+                GridAccessPoint tempACS = new GridAccessPoint();
+                //tempACS.setGridPoint(reader.readValue(result.get("destination")));
+                tempACS.setGridPoint(5);
+                tempACS.setAccessPoint(tempPoint.getMac());
+                tempACS.setSignal(tempPoint.getPower());
+                tempACS.toString();
+                tempACS.updateGridAccessPoint();
+            }
+
+
+            return ok(Json.toJson("ok"));
         }
+
+
+
 
         return ok("updateAccespointGrindpoint");
     }
