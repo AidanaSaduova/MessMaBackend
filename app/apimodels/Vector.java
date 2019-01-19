@@ -43,7 +43,7 @@ public class Vector  extends Model {
   }
 
 
-  public static List<Vector> getAllVectors(){
+  public static List<Vector> getVectors(){
     return find.all();
   }
    /**
