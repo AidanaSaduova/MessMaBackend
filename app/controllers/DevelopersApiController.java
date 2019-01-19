@@ -116,6 +116,7 @@ public class DevelopersApiController extends Controller {
     }
 
 
+
     /// ---- NavigationLogik ----////
 
     @ApiAction
@@ -142,6 +143,7 @@ public class DevelopersApiController extends Controller {
             throw new IllegalArgumentException("'body' parameter is required");
 
         }
+
 
 
         JsonNode result = mapper.valueToTree(body);
@@ -185,28 +187,26 @@ public class DevelopersApiController extends Controller {
     }
 
 
+
     // Update GridAccessPoint
 
-    public Result updateGridAccessPoint() throws Exception {
-        Logger.debug("updateGridAccessPoint");
+    public Result updateGridAccessPoint() throws  Exception{
         JsonNode nodebody = request().body().asJson();
-        Logger.debug("nodebody ->" + nodebody.toString());
         ReceivedWantedGridPoint body;
-        Logger.debug("ReceivedWantedGridPoint ->");
 
         if (nodebody != null) {
             System.out.println("nodebody != null");
             body = mapper.readValue(nodebody.toString(), ReceivedWantedGridPoint.class);
-            Logger.debug("you wanna update some  GridAccessPoint ->" + body.toString());
+
             JsonNode result = mapper.valueToTree(body);
-            ObjectReader reader = mapper.readerFor(new TypeReference<List<ReceivedAccessPoint>>() {});
+            ObjectReader reader = mapper.readerFor(new TypeReference<List<ReceivedAccessPoint>>(){ });
             List<ReceivedAccessPoint> receivedSignals = reader.readValue(result.get("ReceivedSignals"));
 
-            for (ReceivedAccessPoint tempPoint : receivedSignals) {
+            for (ReceivedAccessPoint tempPoint: receivedSignals) {
                 System.out.println("for each....");
                 GridAccessPoint tempACS = new GridAccessPoint();
                 //tempACS.setGridPoint(reader.readValue(result.get("destination")));
-                tempACS.setGridPoint("7J");
+                tempACS.setGridPoint(5);
                 tempACS.setAccessPoint(tempPoint.getMac());
                 tempACS.setSignal(tempPoint.getPower());
                 tempACS.toString();
@@ -215,16 +215,12 @@ public class DevelopersApiController extends Controller {
 
 
             return ok(Json.toJson("ok"));
-
         }
-        return ok("nope");
+
+
+
+
+        return ok("updateAccespointGrindpoint");
     }
-
-
-
-
-
-
-
 
 }
