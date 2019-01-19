@@ -206,7 +206,7 @@ public class DevelopersApiController extends Controller {
                 System.out.println("for each....");
                 GridAccessPoint tempACS = new GridAccessPoint();
                 //tempACS.setGridPoint(reader.readValue(result.get("destination")));
-                tempACS.setGridPoint(5);
+                tempACS.setGridPoint("10J");
                 tempACS.setAccessPoint(tempPoint.getMac());
                 tempACS.setSignal(tempPoint.getPower());
                 tempACS.toString();

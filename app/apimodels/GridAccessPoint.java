@@ -49,17 +49,19 @@ public class GridAccessPoint  extends Model {
   }
 
 
-  public GridAccessPoint updateGridAccessPoint()
+  public void updateGridAccessPoint()
   {
     Logger.debug(this.toString());
     EbeanServer server = Ebean.getDefaultServer();
 
-     this.pk_gap = this.gridPoint+"-"+this.accessPoint;
+    this.pk_gap = this.gridPoint+"-"+this.accessPoint;
+    /**
     GridAccessPoint temp = Ebean.find(GridAccessPoint.class, pk_gap);
     if(temp!=null)
     {
       Ebean.update(this);
     }else
+     */
       Ebean.save(this);
 
   }
