@@ -124,6 +124,7 @@ public class DevelopersApiController extends Controller {
     @ApiAction
     public Result getPosition() throws Exception {
         Logger.debug("lets look for your Position... ");
+
         JsonNode nodebody = request().body().asJson();
         ReceivedWantedGridPoint body;
         HashMap<String, Integer> counterMap = new HashMap<>();
@@ -132,8 +133,9 @@ public class DevelopersApiController extends Controller {
         Integer upperVal = 0, lowerVal = 0;
 
         List<GridAccessPoint> gridAccessPoints = GridAccessPoint.getGridAccespoints();
-        Logger.debug("oh... a List of gridAccesPoints ->" + gridAccessPoints.toString());
+
         if (nodebody != null) {
+            Logger.debug("oh... a List of gridAccesPoints ->" + nodebody.toString());
             body = mapper.readValue(nodebody.toString(), ReceivedWantedGridPoint.class);
 
            /* if (configuration.getBoolean("useInputBeanValidation")) {
