@@ -16,6 +16,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 import java.io.File;
+
+import sun.rmi.runtime.Log;
 import swagger.SwaggerUtils;
 import com.fasterxml.jackson.core.type.TypeReference;
 
@@ -141,7 +143,7 @@ public class DevelopersApiController extends Controller {
 
         //region Body auslesen
         List<GridAccessPoint> gridAccessPoints = GridAccessPoint.getGridAccespoints();
-        Logger.debug("oh... a List of gridAccesPoints ->" + gridAccessPoints.toString());
+        Logger.debug("oh... a List of gridAccesPoints from DB->\n" + gridAccessPoints.toString());
 
 
         if (nodebody != null) {
@@ -202,6 +204,8 @@ public class DevelopersApiController extends Controller {
             navigation.add(n.getName());
         }
 
+
+        Logger.debug("NavigationList -> \n"+Json.toJson(navigation).toString());
         return ok(Json.toJson(navigation));
 
     }
