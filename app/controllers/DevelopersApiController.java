@@ -140,10 +140,8 @@ public class DevelopersApiController extends Controller {
 
 
         //region Body auslesen
-        /*List<GridAccessPoint> gridAccessPoints = GridAccessPoint.getGridAccespoints();
-        Logger.debug("oh... a List of gridAccesPoints ->" + gridAccessPoints.toString());
-
         List<GridAccessPoint> gridAccessPoints = GridAccessPoint.getGridAccespoints();
+        Logger.debug("oh... a List of gridAccesPoints ->" + gridAccessPoints.toString());
 
 
         if (nodebody != null) {
@@ -195,10 +193,10 @@ public class DevelopersApiController extends Controller {
             }
 
         }
-        //endregion*/
+        //endregion
 
         //region Navigation
-        navigationList = Navigate(new Node("9AD"), new Node("16AQ"));
+        navigationList = Navigate(new Node(position), new Node(destination));
         //endregion
         for(Node n: navigationList){
             navigation.add(n.getName());
