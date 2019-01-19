@@ -24,7 +24,7 @@ GET     /api/getAllGridAcessPoints                     controllers.DevelopersApi
 
 GET     /api/getTestAPI                             controllers.DevelopersApiController.getTestAPI()
 
-GET     /api/getPosition                        controllers.DevelopersApiController.getPosition()
+POST     /api/getPosition                        controllers.DevelopersApiController.getPosition()
 
 
 
