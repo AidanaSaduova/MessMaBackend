@@ -4,6 +4,7 @@ import apimodels.AccessPoint;
 import apimodels.GridPoint;
 import com.fasterxml.jackson.annotation.*;
 import io.ebean.*;
+import play.Logger;
 
 import java.util.List;
 import java.util.Set;
@@ -23,14 +24,15 @@ import javax.validation.constraints.*;
 public class GridAccessPoint  extends Model {
   public static final Finder<Long, GridAccessPoint> find = new Finder<>(GridAccessPoint.class);
 
-//  @ManyToOne(fetch = FetchType.LAZY)
-//  @JoinColumn(name="fk_id_gridPoint",referencedColumnName = "_id_grid_point")
+
+  @Id
+  @Column(name = "pk_grid_accesspoint")
+  private String pk_gap = null;
+
   @JsonProperty("gridPoint")
   @Column(name =  "fk_id_gridPoint")
-  private Integer gridPoint = null;
+  private String gridPoint = null;
 
-//  @ManyToOne(fetch = FetchType.LAZY)
-//  @JoinColumn(name="fk_id_mac",referencedColumnName = "_id_mac")
   @JsonProperty("accessPoint")
   @Column(name = "fk_id_mac")
   private String accessPoint = null;
@@ -45,21 +47,20 @@ public class GridAccessPoint  extends Model {
   }
 
 
-  public GridAccessPoint updateGridAccessPoint()
+  public void updateGridAccessPoint()
   {
+    Logger.debug(this.toString());
     EbeanServer server = Ebean.getDefaultServer();
-    //this.toString();
-    GridAccessPoint tempGAP = server.find(GridAccessPoint.class).where().like("fk_id_gridPoint", gridPoint.toString()).findOne();
-    GridAccessPoint tempGAP2 = Ebean.find(GridAccessPoint.class).where().like("fk_id_gridPoint", gridPoint.toString()).findOne();
-
-    GridAccessPoint temp = Ebean.find(GridAccessPoint.class).where().eq("gridPoint",gridPoint).findOne();
-    if(this.equals(temp))
-
-      return temp;
-
-//    System.out.println(tempGAP.toString());
-   return this;
-
+    this.pk_gap = this.gridPoint+"-"+this.accessPoint;
+    /**
+    GridAccessPoint temp = Ebean.find(GridAccessPoint.class, pk_gap);
+    if(temp!=null)
+    {
+      Ebean.update(this);
+    }else
+      Ebean.save(this);
+     */
+    Ebean.save(this);
   }
 
   public GridAccessPoint signal(Integer signal) {
@@ -79,7 +80,7 @@ public class GridAccessPoint  extends Model {
     this.signal = signal;
   }
 
-  public GridAccessPoint gridPoint(Integer gridPoint) {
+  public GridAccessPoint gridPoint(String gridPoint) {
     this.gridPoint = gridPoint;
     return this;
   }
@@ -89,11 +90,11 @@ public class GridAccessPoint  extends Model {
    * @return gridPoint
   **/
   @Valid
-  public Integer getGridPoint() {
+  public String getGridPoint() {
     return gridPoint;
   }
 
-  public void setGridPoint(Integer gridPoint) {
+  public void setGridPoint(String gridPoint) {
     this.gridPoint = gridPoint;
   }
 

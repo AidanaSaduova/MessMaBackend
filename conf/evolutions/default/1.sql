@@ -11,13 +11,15 @@ create table accesspoints (
 );
 
 create table grid_has_accespoints (
-  fk_id_gridpoint               integer,
+  pk_grid_accesspoint           varchar(255) not null,
+  fk_id_gridpoint               varchar(255),
   fk_id_mac                     varchar(255),
-  signal_power                  integer
+  signal_power                  integer,
+  constraint pk_grid_has_accespoints primary key (pk_grid_accesspoint)
 );
 
 create table gridpoints (
-  _id_grid_point                integer auto_increment not null,
+  _id_grid_point                varchar(255) not null,
   pos_x                         integer not null,
   pos_y                         integer not null,
   constraint pk_gridpoints primary key (_id_grid_point)

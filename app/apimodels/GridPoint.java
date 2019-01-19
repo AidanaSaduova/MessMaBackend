@@ -25,7 +25,7 @@ public class GridPoint  extends Model {
   @Id
 //  @OneToMany(mappedBy = "fk_id_gridPoint", cascade = CascadeType.ALL)
   @Column(name="_id_grid_point")
-  private Integer id = null;
+  private String id = null;
 
   @JsonProperty("posX")
   @Column(name="pos_x", nullable = true)
@@ -40,11 +40,6 @@ public class GridPoint  extends Model {
   private Stand stand;
 
 
-
-
-
-
-
   public static List<GridPoint> getGridPoints(){
     List<GridPoint> gridPointList = GridPoint.find.all();
 
@@ -52,7 +47,7 @@ public class GridPoint  extends Model {
   }
 
 
-  public GridPoint id(Integer id) {
+  public GridPoint id(String id) {
     this.id = id;
     return this;
   }
@@ -62,11 +57,11 @@ public class GridPoint  extends Model {
    * @return id
   **/
   @NotNull
-  public Integer getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(String id) {
     this.id = id;
   }
 

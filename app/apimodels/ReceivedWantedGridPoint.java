@@ -19,7 +19,7 @@ import javax.validation.constraints.*;
 public class ReceivedWantedGridPoint {
 
     @JsonProperty("destination")
-    private Integer destination;
+    private String destination;
 
     @JsonProperty("ReceivedSignals")
     private List<ReceivedAccessPoint> signals;
