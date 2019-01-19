@@ -110,9 +110,11 @@ public class DevelopersApiController extends Controller {
     }
 
     @ApiAction
-    public Result getAllVektors() throws Exception {
+    public Result getAllVectors() throws Exception {
         Logger.debug("uhhh.... getAllVektors... ");
-        return ok();
+        List<Vector> vectorsList = Vector.getAllVectors();
+
+        return ok(vectorsList.toString());
     }
 
 

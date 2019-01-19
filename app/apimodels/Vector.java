@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.*;
 import io.ebean.Finder;
 import io.ebean.Model;
 
+import java.util.List;
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -24,20 +26,26 @@ public class Vector  extends Model {
   public static final Finder<Long, Vector> find = new Finder<>(Vector.class);
 
   @JsonProperty("distance")
-
+  @Column(name="distance")
   private Integer distance = null;
 
   @JsonProperty("startPoint")
-  private GridPoint startPoint = null;
+  @Column(name="fk_id_grid_point_start")
+  private String startPoint = null;
 
   @JsonProperty("endPoint")
-  private GridPoint endPoint = null;
+  @Column(name="fk_id_grid_point_end")
+  private String endPoint = null;
 
   public Vector distance(Integer distance) {
     this.distance = distance;
     return this;
   }
 
+
+  public static List<Vector> getAllVectors(){
+    return find.all();
+  }
    /**
    * Get distance
    * @return distance
@@ -50,7 +58,7 @@ public class Vector  extends Model {
     this.distance = distance;
   }
 
-  public Vector startPoint(GridPoint startPoint) {
+  public Vector startPoint(String startPoint) {
     this.startPoint = startPoint;
     return this;
   }
@@ -60,15 +68,15 @@ public class Vector  extends Model {
    * @return startPoint
   **/
   @Valid
-  public GridPoint getStartPoint() {
+  public String getStartPoint() {
     return startPoint;
   }
 
-  public void setStartPoint(GridPoint startPoint) {
+  public void setStartPoint(String startPoint) {
     this.startPoint = startPoint;
   }
 
-  public Vector endPoint(GridPoint endPoint) {
+  public Vector endPoint(String endPoint) {
     this.endPoint = endPoint;
     return this;
   }
@@ -78,11 +86,11 @@ public class Vector  extends Model {
    * @return endPoint
   **/
   @Valid
-  public GridPoint getEndPoint() {
+  public String getEndPoint() {
     return endPoint;
   }
 
-  public void setEndPoint(GridPoint endPoint) {
+  public void setEndPoint(String endPoint) {
     this.endPoint = endPoint;
   }
 
