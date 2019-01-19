@@ -43,7 +43,8 @@ public class Stand   extends Model {
 
   @JsonProperty("GridPoint")
   @Column(name="fk_id_grid_point")
-  @OneToOne(mappedBy = "stand" ,fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+  private String fk_id_grid_point;
+
   private GridPoint gridPoint = null;
 
   public Stand id(Integer id) {
@@ -54,7 +55,16 @@ public class Stand   extends Model {
 
   public static List<Stand> getStands(){
     List<Stand> standList = Stand.find.all();
+
+    for (Stand stand: standList) {
+      stand.gridPoint = GridPoint.getByID(stand.fk_id_grid_point);
+    }
+
     return standList;
+  }
+
+  public String getFk_id_grid_point(){
+    return this.fk_id_grid_point;
   }
 
    /**
