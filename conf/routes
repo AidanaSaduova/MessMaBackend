@@ -8,6 +8,8 @@ GET     /api                        controllers.ApiDocController.api
 #Functions for Admins API
 POST     /api/saveAccessPoint                     controllers.AdminsApiController.addNewAccessPoint()
 POST     /api/saveGridPoint                     controllers.AdminsApiController.addNewGridPoint()
+POST    /api/updateGridAccessPoint              controllers.DevelopersApiController.updateGridAccessPoint()
+
 
 #Functions for Developers API
 GET     /api/getAccessPoint/byMac/:mac                     controllers.DevelopersApiController.findAccessPointsbyMac(mac: java.util.UUID)
@@ -18,7 +20,7 @@ GET     /api/getAllGridPoints                     controllers.DevelopersApiContr
 GET     /api/getAllStands                     controllers.DevelopersApiController.getAllStands()
 GET     /api/getAllVektors                     controllers.DevelopersApiController.getAllVektors()
 GET     /api/getAllGridAcessPoints                     controllers.DevelopersApiController.getAllGridAccessPoints()
-POST     /api/updateGpAP                     controllers.DevelopersApiController.updateGridAccessPoint()
+#POST     /api/updateGpAP                     controllers.DevelopersApiController.updateGridAccessPoint()
 
 GET     /api/getTestAPI                             controllers.DevelopersApiController.getTestAPI()
 

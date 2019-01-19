@@ -4,6 +4,7 @@ import apimodels.AccessPoint;
 import apimodels.GridPoint;
 import com.fasterxml.jackson.annotation.*;
 import io.ebean.*;
+import play.Logger;
 
 import java.util.List;
 import java.util.Set;
@@ -19,33 +20,28 @@ import javax.validation.constraints.*;
 
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 @Entity
-@Table(name = "grid_has_accesspoints")
+@Table(name = "grid_has_accespoints")
 public class GridAccessPoint  extends Model {
   public static final Finder<Long, GridAccessPoint> find = new Finder<>(GridAccessPoint.class);
 
-//  @ManyToOne(fetch = FetchType.LAZY)
-//  @JoinColumn(name="fk_id_gridPoint",referencedColumnName = "_id_grid_point")
-@JsonProperty("pk_gap")
-@Id
-@Column(name =  "pk_gap")
-private  String pk_gap = null;
+
+  @Id
+  @Column(name = "pk_grid_accesspoint")
+  private String pk_gap = null;
 
   @JsonProperty("gridPoint")
   @Column(name =  "fk_id_gridPoint")
-  private Integer gridPoint = null;
-
+  private String gridPoint = null;
 
 //  @ManyToOne(fetch = FetchType.LAZY)
 //  @JoinColumn(name="fk_id_mac",referencedColumnName = "_id_mac")
   @JsonProperty("accessPoint")
   @Column(name = "fk_id_mac")
-
-  private  String accessPoint = null;
+  private String accessPoint = null;
 
   @JsonProperty("signal")
   @Column(name = "signal_power")
-  private  Integer signal = null;
-
+  private Integer signal = null;
 
   public static List<GridAccessPoint> getGridAccespoints(){
     List<GridAccessPoint> gridAccessPointList = GridAccessPoint.find.all();
@@ -55,14 +51,17 @@ private  String pk_gap = null;
 
   public void updateGridAccessPoint()
   {
+    Logger.debug(this.toString());
     EbeanServer server = Ebean.getDefaultServer();
 
-     this.pk_gap = this.gridPoint+"-"+this.accessPoint;
+    this.pk_gap = this.gridPoint+"-"+this.accessPoint;
+    /**
     GridAccessPoint temp = Ebean.find(GridAccessPoint.class, pk_gap);
     if(temp!=null)
     {
       Ebean.update(this);
     }else
+     */
       Ebean.save(this);
 
   }
@@ -84,7 +83,7 @@ private  String pk_gap = null;
     this.signal = signal;
   }
 
-  public GridAccessPoint gridPoint(Integer gridPoint) {
+  public GridAccessPoint gridPoint(String gridPoint) {
     this.gridPoint = gridPoint;
     return this;
   }
@@ -94,11 +93,11 @@ private  String pk_gap = null;
    * @return gridPoint
   **/
   @Valid
-  public Integer getGridPoint() {
+  public String getGridPoint() {
     return gridPoint;
   }
 
-  public void setGridPoint(Integer gridPoint) {
+  public void setGridPoint(String gridPoint) {
     this.gridPoint = gridPoint;
   }
 
