@@ -123,24 +123,32 @@ public class DevelopersApiController extends Controller {
 
     @ApiAction
     public Result getPosition() throws Exception {
+
+        //region Variablendeklaration
         Logger.debug("lets look for your Position... ");
 
+        List<Node> navigationList = new LinkedList<>();
         JsonNode nodebody = request().body().asJson();
         ReceivedWantedGridPoint body;
         HashMap<String, Integer> counterMap = new HashMap<>();
         Integer counter = 1;
-        String help = "";
+        String position = "", destination = "";
+
         Integer upperVal = 0, lowerVal = 0;
+        List<String> navigation = new LinkedList<>();
+        //endregion
+
+
+        //region Body auslesen
+        /*List<GridAccessPoint> gridAccessPoints = GridAccessPoint.getGridAccespoints();
+        Logger.debug("oh... a List of gridAccesPoints ->" + gridAccessPoints.toString());
 
         List<GridAccessPoint> gridAccessPoints = GridAccessPoint.getGridAccespoints();
+
 
         if (nodebody != null) {
             Logger.debug("oh... a List of gridAccesPoints ->" + nodebody.toString());
             body = mapper.readValue(nodebody.toString(), ReceivedWantedGridPoint.class);
-
-           /* if (configuration.getBoolean("useInputBeanValidation")) {
-                SwaggerUtils.validate(body);
-            }*/
 
         } else {
             Logger.debug("land in throw new...");
@@ -148,13 +156,14 @@ public class DevelopersApiController extends Controller {
 
         }
 
-
-
         JsonNode result = mapper.valueToTree(body);
         ObjectReader reader = mapper.readerFor(new TypeReference<List<ReceivedAccessPoint>>() {
         });
         List<ReceivedAccessPoint> receivedSignals = reader.readValue(result.get("ReceivedSignals"));
+        destination = result.get("destination").textValue();
+        //endregion
 
+        //region Positionsbestimmung
         for (ReceivedAccessPoint ap : receivedSignals) {
             String curMac = ap.getMac();
             Integer curPower = ap.getPower();
@@ -182,14 +191,93 @@ public class DevelopersApiController extends Controller {
             Integer value = entry.getValue();
             int maxValueInMap = (Collections.max(counterMap.values()));
             if (entry.getValue() == maxValueInMap) {
-                help = entry.getKey().toString();
+                position = entry.getKey().toString();
             }
 
         }
+        //endregion*/
 
-        return ok(Json.toJson(help));
+        //region Navigation
+        navigationList = Navigate(new Node("9AD"), new Node("16AQ"));
+        //endregion
+        for(Node n: navigationList){
+            navigation.add(n.getName());
+        }
+
+        return ok(Json.toJson(navigation));
+
     }
 
+    public List<Node> Navigate (Node start, Node destination){
+
+        //Liste der Punkte die an Navigations-App gesendet werden
+        List<Node> path = new LinkedList<>();
+        List<Node> nodeList = new LinkedList<>();
+        //Ein Graph stellt in unserem Fall das gesamte Grid dar. Die Punkte werden hier hinzugefügt
+
+
+        //Start und Endpunkt der Navigationsanfrage
+        Node startNode, destinationNode;
+
+        List<Vector> vectorList = Vector.getVectors();
+        List<GridPoint> gridPoints = GridPoint.getGridPoints();
+        Graph graph = new Graph();
+
+        //Anlegen der Nodes
+        for(GridPoint gp : gridPoints) {
+            nodeList.add(new Node(gp.getId()));
+        }
+
+        for(Node n : nodeList){
+            graph.addNode(n);
+        }
+
+        for(Node n : graph.getNodes()){
+            for(Vector v : vectorList){
+                if(n.getName().equals(v.getStartPoint())){
+                    n.addDestination(graph.getNodeByName(v.getEndPoint()), v.getDistance());
+                }
+            }
+        }
+
+        //Hier werden Daten von der Navigations-App empfangen
+        startNode = start;
+        destinationNode = destination;
+
+        //Startpunkt wird mit einem Punkt im Grid gematcht
+        for(Node n : graph.getNodes()){
+            if(startNode.getName().equals(n.getName()))
+                startNode = n;
+        }
+
+        //Endpunkt wird mit einem Punkt im Grid gematcht
+        for(Node n : graph.getNodes()){
+            if(destinationNode.getName().equals(n.getName()))
+                destinationNode = n;
+        }
+
+
+        //Startpunkt ist der zweite Parameter
+        graph = Dijkstra.calculateShortestPathFromSource(graph, startNode);
+
+        for (Node n : graph.getNodes()) {
+            if(n.getName().equals(destinationNode.getName())) {
+                for (Node n1 : n.getShortestPath()) {
+                    path.add(n1);
+
+                    //System.out.println("Abgegangene Punkte: " + n1.getName());
+                }
+                path.add(destinationNode);
+
+                //System.out.println("Endpunkt: " + destinationNode.getName());
+                //System.out.println("Distanz gesamt: " + n.getDistance());
+            }
+        }
+
+
+        List<Node> tester = new LinkedList<>(graph.getNodes());
+        return path;
+    }
 
 
     // Update GridAccessPoint

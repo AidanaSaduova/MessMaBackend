@@ -26,8 +26,6 @@ GET     /api/getTestAPI                             controllers.DevelopersApiCon
 
 POST     /api/getPosition                        controllers.DevelopersApiController.getPosition()
 
-
-
 # Map static resources from the /public folder to the /assets URL path
 GET /assets/*file           controllers.Assets.at(file)
 GET /versionedAssets/*file  controllers.Assets.versioned(file)

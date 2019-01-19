@@ -26,6 +26,7 @@ public class Vector  extends Model {
   public static final Finder<Long, Vector> find = new Finder<>(Vector.class);
 
   @JsonProperty("distance")
+
   @Column(name="distance")
   private Integer distance = null;
 
@@ -35,6 +36,7 @@ public class Vector  extends Model {
 
   @JsonProperty("endPoint")
   @Column(name="fk_id_grid_point_end")
+
   private String endPoint = null;
 
   public Vector distance(Integer distance) {
@@ -43,9 +45,11 @@ public class Vector  extends Model {
   }
 
 
+
   public static List<Vector> getAllVectors(){
     return find.all();
   }
+
    /**
    * Get distance
    * @return distance
@@ -63,10 +67,12 @@ public class Vector  extends Model {
     return this;
   }
 
-   /**
-   * Get startPoint
-   * @return startPoint
-  **/
+  public static List<Vector> getVectors(){
+    List<Vector> vectorList = Vector.find.all();
+
+    return vectorList;
+  }
+
   @Valid
   public String getStartPoint() {
     return startPoint;
