@@ -110,9 +110,11 @@ public class DevelopersApiController extends Controller {
     }
 
     @ApiAction
-    public Result getAllVektors() throws Exception {
+    public Result getAllVectors() throws Exception {
         Logger.debug("uhhh.... getAllVektors... ");
-        return ok();
+        List<Vector> vectorsList = Vector.getAllVectors();
+
+        return ok(vectorsList.toString());
     }
 
 
@@ -124,6 +126,7 @@ public class DevelopersApiController extends Controller {
 
         //region Variablendeklaration
         Logger.debug("lets look for your Position... ");
+
         List<Node> navigationList = new LinkedList<>();
         JsonNode nodebody = request().body().asJson();
         ReceivedWantedGridPoint body;
@@ -135,10 +138,16 @@ public class DevelopersApiController extends Controller {
         List<String> navigation = new LinkedList<>();
         //endregion
 
+
         //region Body auslesen
         /*List<GridAccessPoint> gridAccessPoints = GridAccessPoint.getGridAccespoints();
         Logger.debug("oh... a List of gridAccesPoints ->" + gridAccessPoints.toString());
+
+        List<GridAccessPoint> gridAccessPoints = GridAccessPoint.getGridAccespoints();
+
+
         if (nodebody != null) {
+            Logger.debug("oh... a List of gridAccesPoints ->" + nodebody.toString());
             body = mapper.readValue(nodebody.toString(), ReceivedWantedGridPoint.class);
 
         } else {

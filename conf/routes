@@ -18,13 +18,13 @@ GET     /api/getStand/byId/:id                     controllers.DevelopersApiCont
 GET     /api/getAllAccessPoints                     controllers.DevelopersApiController.getAllAccessPoints()
 GET     /api/getAllGridPoints                     controllers.DevelopersApiController.getAllGridPoints()
 GET     /api/getAllStands                     controllers.DevelopersApiController.getAllStands()
-GET     /api/getAllVektors                     controllers.DevelopersApiController.getAllVektors()
+GET     /api/getAllVectors                     controllers.DevelopersApiController.getAllVectors()
 GET     /api/getAllGridAcessPoints                     controllers.DevelopersApiController.getAllGridAccessPoints()
 #POST     /api/updateGpAP                     controllers.DevelopersApiController.updateGridAccessPoint()
 
 GET     /api/getTestAPI                             controllers.DevelopersApiController.getTestAPI()
 
-GET     /api/getPosition                        controllers.DevelopersApiController.getPosition()
+POST     /api/getPosition                        controllers.DevelopersApiController.getPosition()
 
 # Map static resources from the /public folder to the /assets URL path
 GET /assets/*file           controllers.Assets.at(file)

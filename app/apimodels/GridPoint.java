@@ -20,7 +20,7 @@ import javax.validation.constraints.*;
 @Table(name="gridpoints")
 public class GridPoint  extends Model {
 
-  public static final Finder<Long, GridPoint> find = new Finder<>(GridPoint.class);
+  public static final Finder<String, GridPoint> find = new Finder<>(GridPoint.class);
   @JsonProperty("id")
   @Id
 //  @OneToMany(mappedBy = "fk_id_gridPoint", cascade = CascadeType.ALL)
@@ -44,6 +44,10 @@ public class GridPoint  extends Model {
     List<GridPoint> gridPointList = GridPoint.find.all();
 
     return gridPointList;
+  }
+
+  public static GridPoint getByID(String ID){
+    return find.byId(ID);
   }
 
 
