@@ -43,7 +43,7 @@ public class DevelopersApiController extends Controller {
 
     @ApiAction
     public Result findAccessPointsbyMac(UUID mac) throws Exception {
-        Logger.debug("Somebody called findAccessPointsbyMac -> " + mac);
+        Logger.debug("Somebody need data for AccessPoint with mac:\t" + mac);
         imp.findAccessPointsbyMac(mac);
         return ok();
     }
