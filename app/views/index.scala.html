@@ -1,0 +1,80 @@
+@import apimodels.StandNavigationHistory
+
+@(standNavigationHistory: StandNavigationHistory)
+
+<htm>
+
+
+     <head>
+       <title>NavigationStatistic</title>
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    </head>
+
+    <body>
+
+        <div id="standList">
+            <table class="table">
+                <thead>
+                    <th>
+                        Logo
+                    </th>
+                    <th>
+                        Name
+                    </th>
+
+                    <th>
+                        Description
+                    </th>
+
+                    <th>
+                        GridPoint FK
+                    </th>
+                    <th>
+                        as Start
+                    </th>
+                    <th>
+                        as Target
+                    </th>
+                </thead>
+                <tbody>
+
+
+            @for(tempStand <- standNavigationHistory.getStandsList()){
+               <tr>
+                   <td>
+                       <img class="img-thumbnail" src="@routes.Assets.at(tempStand.getLogo())" width=100px; height=100px; >
+                   </td>
+                   <td>
+                       @tempStand.getName()
+                   </td>
+
+                   <td>
+                        @tempStand.getDescription()
+                   </td>
+
+                   <td>
+                        @tempStand.getFkGridPointId()
+                   </td>
+                   <td>
+                   @standNavigationHistory.getStartCountForStandAtGridPointId(tempStand.getFkGridPointId())
+                   </td>
+                   <td>
+                   @standNavigationHistory.getTargetCountForStandAtGridPointId(tempStand.getFkGridPointId())
+                   </td>
+
+               </tr>
+            }
+                </tbody>
+
+            </table>
+        </div>
+
+
+
+        <div id="navigationHistory">
+
+
+        </div>
+
+    </body>
+</htm>

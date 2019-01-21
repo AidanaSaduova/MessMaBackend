@@ -3,7 +3,7 @@
 # ~~~~
 
 GET     /api                        controllers.ApiDocController.api
-
+GET     /api/getTestAPI                             controllers.DevelopersApiController.getTestAPI()
 
 #Functions for Admins API
 POST     /api/saveAccessPoint                     controllers.AdminsApiController.addNewAccessPoint()
@@ -21,11 +21,12 @@ GET     /api/getAllStands                     controllers.DevelopersApiControlle
 GET     /api/getAllVectors                     controllers.DevelopersApiController.getAllVectors()
 GET     /api/getAllGridAcessPoints                     controllers.DevelopersApiController.getAllGridAccessPoints()
 #POST     /api/updateGpAP                     controllers.DevelopersApiController.updateGridAccessPoint()
-
-GET     /api/getTestAPI                             controllers.DevelopersApiController.getTestAPI()
-
 POST     /api/getPosition                        controllers.DevelopersApiController.getPosition()
 
+
+#Functions for Statisic API
+GET /api/getStatistic      controllers.NaviagtionHistoryController.index()
+
 # Map static resources from the /public folder to the /assets URL path
-GET /assets/*file           controllers.Assets.at(file)
+GET  /assets/*file               controllers.Assets.at(path="/public", file)
 GET /versionedAssets/*file  controllers.Assets.versioned(file)
