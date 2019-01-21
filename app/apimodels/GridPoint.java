@@ -46,6 +46,10 @@ public class GridPoint  extends Model {
     return gridPointList;
   }
 
+  public static GridPoint getGridPointById(String id){
+    return find.byId(id);
+  }
+
   public static GridPoint getByID(String ID){
     return find.byId(ID);
   }

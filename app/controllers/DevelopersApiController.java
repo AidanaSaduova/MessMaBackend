@@ -136,7 +136,7 @@ public class DevelopersApiController extends Controller {
         String position = "", destination = "";
 
         Integer upperVal = 0, lowerVal = 0;
-        List<String> navigation = new LinkedList<>();
+        List<GridPoint> navigation = new LinkedList<>();
         //endregion
 
 
@@ -204,7 +204,7 @@ public class DevelopersApiController extends Controller {
 
         //endregion
         for(Node n: navigationList){
-            navigation.add(n.getName());
+            navigation.add(GridPoint.getByID(n.getName()));
         }
 
 
@@ -287,6 +287,8 @@ public class DevelopersApiController extends Controller {
             }
         }
         Logger.debug("Oh my friends, it's good to see you arrived well back...\nwhat is the result i can give to this young adventurers...");
+
+
 
         List<Node> tester = new LinkedList<>(graph.getNodes());
         return path;
