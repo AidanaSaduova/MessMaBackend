@@ -50,7 +50,7 @@ public class DevelopersApiController extends Controller {
 
     @ApiAction
     public Result findGridPointbyId(String id) throws Exception {
-        Logger.debug("Somebody called findGridPointbyId -> " + id);
+        Logger.debug("Somebody need data for GridPoint with id:\t" + id);
         imp.findGridPointbyId(id);
         return ok();
     }
@@ -70,10 +70,9 @@ public class DevelopersApiController extends Controller {
 
     @ApiAction
     public Result getAllAccessPoints() throws Exception {
-        Logger.debug("Somebody called getAllAccessPoints ");
+        Logger.debug("Somebody wants to know all available AccessPoints ");
         List<AccessPoint> accessPointList = AccessPoint.getAccespoints();
 
-        Logger.debug("Somebody is calling for AccessPoints");
         String jsonString = "{\"startIndex\": 0, \"data\":" + Json.toJson(accessPointList).toString() + "}";
         if (jsonString.length() > 50) {
             Logger.debug("JSON done and ready for send");
@@ -86,7 +85,7 @@ public class DevelopersApiController extends Controller {
 
     @ApiAction
     public Result getAllGridPoints() throws Exception {
-        Logger.debug("Somebody called getAllGridPoints ");
+        Logger.debug("Somebody wants to know all available GridPoints ");
         List<GridPoint> gridPointList = GridPoint.getGridPoints();
 
         String jsonString = "{\"startIndex\": 0, \"data\":" + Json.toJson(gridPointList).toString() + "}";
@@ -95,7 +94,7 @@ public class DevelopersApiController extends Controller {
 
     @ApiAction
     public Result getAllStands() throws Exception {
-        Logger.debug("Somebody called getAllStands ");
+        Logger.debug("Somebody wants to know all available Stands ");
         List<Stand> standList = Stand.getStands();
         String jsonString = "{\"startIndex\": 0, \"data\":" + Json.toJson(standList).toString() + "}";
 
@@ -127,7 +126,7 @@ public class DevelopersApiController extends Controller {
     public Result getPosition() throws Exception {
 
         //region Variablendeklaration
-        Logger.debug("lets look for your Position... ");
+        Logger.debug("your Position first i have to find... ");
 
         List<Node> navigationList = new LinkedList<>();
         JsonNode nodebody = request().body().asJson();
@@ -143,15 +142,15 @@ public class DevelopersApiController extends Controller {
 
         //region Body auslesen
         List<GridAccessPoint> gridAccessPoints = GridAccessPoint.getGridAccespoints();
-        Logger.debug("oh... a List of gridAccesPoints from DB->\n" + gridAccessPoints.toString());
+        //Logger.debug("oh... a List of gridAccesPoints from DB->\n" + gridAccessPoints.toString());
 
 
         if (nodebody != null) {
-            Logger.debug("oh... a List of gridAccesPoints ->" + nodebody.toString());
+            Logger.debug("this information you have give to me... hmmm\n" + nodebody.toString());
             body = mapper.readValue(nodebody.toString(), ReceivedWantedGridPoint.class);
 
         } else {
-            Logger.debug("land in throw new...");
+            Logger.debug("no information you have give to me -.-");
             throw new IllegalArgumentException("'body' parameter is required");
 
         }
@@ -196,17 +195,26 @@ public class DevelopersApiController extends Controller {
 
         }
         //endregion
+        if(position != null)Logger.debug("at this Position i think you are -> "+position + "\nand there you wana go -> " + destination);
 
         //region Navigation
+        //position = "4D";
+        //destination = "7M";
         navigationList = Navigate(new Node(position), new Node(destination));
+
         //endregion
         for(Node n: navigationList){
             navigation.add(n.getName());
         }
 
 
-        Logger.debug("NavigationList -> \n"+Json.toJson(navigation).toString());
-        return ok(Json.toJson(navigation));
+        Logger.debug("By the Power of Greyskull... I will follow you throw this rout!\n"+Json.toJson(navigation).toString());
+
+        NavigateHistory navigateHistory = new NavigateHistory(position,destination);
+        navigateHistory.updateNavigationHistory();
+
+        String jsonString = "{\"startIndex\": 0, \"data\":" + Json.toJson(navigation).toString() + "}";
+        return ok(jsonString);
 
     }
 
@@ -223,6 +231,7 @@ public class DevelopersApiController extends Controller {
 
         List<Vector> vectorList = Vector.getVectors();
         List<GridPoint> gridPoints = GridPoint.getGridPoints();
+
         Graph graph = new Graph();
 
         //Anlegen der Nodes
@@ -233,7 +242,9 @@ public class DevelopersApiController extends Controller {
         for(Node n : nodeList){
             graph.addNode(n);
         }
+        Logger.debug("a list of Vectors and and one of GridPoints i have found :)");
 
+        Logger.debug("Flash drawe the Graph and take Dijkstra with you to count the Paths...");
         for(Node n : graph.getNodes()){
             for(Vector v : vectorList){
                 if(n.getName().equals(v.getStartPoint())){
@@ -275,7 +286,7 @@ public class DevelopersApiController extends Controller {
                 //System.out.println("Distanz gesamt: " + n.getDistance());
             }
         }
-
+        Logger.debug("Oh my friends, it's good to see you arrived well back...\nwhat is the result i can give to this young adventurers...");
 
         List<Node> tester = new LinkedList<>(graph.getNodes());
         return path;

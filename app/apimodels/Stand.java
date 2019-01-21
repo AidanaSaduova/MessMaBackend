@@ -150,6 +150,8 @@ public class Stand   extends Model {
   }
 
 
+  public String getFkGridPointId(){return fk_id_grid_point;}
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
