@@ -37,8 +37,8 @@ public class StandNavigationHistory {
             }
 
             for(NavigateHistory navigateHistory:navigateHistoryList){
-                Logger.debug("navigateHistory StartPoint =" +navigateHistory.getStartPoint());
-                Logger.debug(("compare to Stand.getFK = " +stand.getFk_id_grid_point()));
+                //Logger.debug("navigateHistory StartPoint =" +navigateHistory.getStartPoint());
+                //Logger.debug(("compare to Stand.getFK = " +stand.getFk_id_grid_point()));
                 if(navigateHistory.getStartPoint().equals(stand.getFk_id_grid_point())){
                     Logger.debug("---- StartPoint and FK are the Same ----");
                     standNavigation.get(stand.getFk_id_grid_point()).startCount+=navigateHistory.getCount();

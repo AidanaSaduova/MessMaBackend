@@ -126,6 +126,7 @@ public class DevelopersApiController extends Controller {
     public Result getPosition() throws Exception {
 
         //region Variablendeklaration
+        Logger.debug("- - - Let's do some navigation stuff - - -");
         Logger.debug("your Position first i have to find... ");
 
         List<Node> navigationList = new LinkedList<>();
@@ -150,7 +151,7 @@ public class DevelopersApiController extends Controller {
             body = mapper.readValue(nodebody.toString(), ReceivedWantedGridPoint.class);
 
         } else {
-            Logger.debug("no information you have give to me -.-");
+            Logger.debug("no information you have give to me ( -.- )");
             throw new IllegalArgumentException("'body' parameter is required");
 
         }
@@ -169,8 +170,8 @@ public class DevelopersApiController extends Controller {
 
             for (GridAccessPoint gap : gridAccessPoints) {
                 if (gap.getAccessPoint().equals(curMac)) {
-                    upperVal = gap.getSignal() + 3;
-                    lowerVal = gap.getSignal() - 3;
+                    upperVal = gap.getSignal() + 4;
+                    lowerVal = gap.getSignal() - 4;
                     if (curPower >= lowerVal && curPower <= upperVal) {
                         if (counterMap.containsKey(gap.getGridPoint())) {
                             //Counter (=Value) muss erhöht werden, wenn es den Grid Point darin schon gibt, sonst nicht
@@ -195,7 +196,10 @@ public class DevelopersApiController extends Controller {
 
         }
         //endregion
-        if(position != null)Logger.debug("at this Position i think you are -> "+position + "\nand there you wana go -> " + destination);
+        if(position != null){
+            Logger.debug("at this Position i think you are -> "+position);
+            Logger.debug("and there you wana go -> " + destination);
+        }
 
         //region Navigation
         //position = "4D";
@@ -208,7 +212,7 @@ public class DevelopersApiController extends Controller {
         }
 
 
-        Logger.debug("By the Power of Greyskull... I will follow you throw this rout!\n"+Json.toJson(navigation).toString());
+        Logger.debug("By the Power of Greyskull...\n\t ...I will lead you throw this rout!\n\t"+Json.toJson(navigation).toString());
 
         NavigateHistory navigateHistory = new NavigateHistory(position,destination);
         navigateHistory.updateNavigationHistory();
@@ -242,9 +246,9 @@ public class DevelopersApiController extends Controller {
         for(Node n : nodeList){
             graph.addNode(n);
         }
-        Logger.debug("a list of Vectors and and one of GridPoints i have found :)");
+        Logger.debug("a list of Vectors and and one of GridPoints i have found (^_^)");
 
-        Logger.debug("Flash drawe the Graph and take Dijkstra with you to count the Paths...");
+        Logger.debug("-> Flash drawe the Graph and take Dijkstra with you to count the Paths...");
         for(Node n : graph.getNodes()){
             for(Vector v : vectorList){
                 if(n.getName().equals(v.getStartPoint())){
@@ -286,7 +290,7 @@ public class DevelopersApiController extends Controller {
                 //System.out.println("Distanz gesamt: " + n.getDistance());
             }
         }
-        Logger.debug("Oh my friends, it's good to see you arrived well back...\nwhat is the result i can give to this young adventurers...");
+        Logger.debug("Oh my friends, it's good to see you arrived well back...\n\twhat is the result i can give to this young adventurers...");
 
 
 
@@ -310,8 +314,9 @@ public class DevelopersApiController extends Controller {
             List<ReceivedAccessPoint> receivedSignals = reader.readValue(result.get("ReceivedSignals"));
             String gridPoint = result.get("destination").textValue();
 
+            Logger.debug("for each AccessPoint in receivedSignals...");
             for (ReceivedAccessPoint tempPoint: receivedSignals) {
-                System.out.println("for each....");
+
                 GridAccessPoint tempACS = new GridAccessPoint();
                 //tempACS.setGridPoint(reader.readValue(result.get("destination")));
                 tempACS.setGridPoint(gridPoint);
@@ -320,7 +325,7 @@ public class DevelopersApiController extends Controller {
 
                 tempACS.updateGridAccessPoint();
             }
-
+            Logger.debug("-> Update the DataBase");
 
             return ok(Json.toJson("ok"));
         }
