@@ -2,6 +2,7 @@ package controllers;
 
 import apimodels.*;
 
+import java.io.IOException;
 import java.util.*;
 
 import apimodels.Vector;
@@ -40,6 +41,35 @@ public class DevelopersApiController extends Controller {
         this.configuration = configuration;
     }
 
+
+    @ApiAction
+    public Result setProject(){
+
+        //region Variablendeklaration
+        Logger.debug("- - - lets set this Projects - - -");
+        Logger.debug("you send me ");
+        Logger.debug(request().body().asJson().toString());
+
+        JsonNode nodebody = request().body().asJson();
+        ReceivedProjects projectsList;
+
+        if (nodebody != null) {
+            try {
+            Logger.debug("lets mapp the JSON ProjectsList to our ReceivedProjectsList ");
+                projectsList = mapper.readValue(nodebody.toString(), ReceivedProjects.class);
+            } catch (IOException e) {
+                Logger.debug("- - - IOException in  setProject() projectsList = mapper.readValue()  - - -");
+                e.printStackTrace();
+            }
+
+        } else {
+            Logger.debug("no information you have give to me ( -.- )");
+            throw new IllegalArgumentException("'body' parameter is required");
+
+        }
+
+        return ok();
+    };
 
     @ApiAction
     public Result findAccessPointsbyMac(UUID mac) throws Exception {
