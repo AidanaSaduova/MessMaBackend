@@ -39,6 +39,9 @@ public class GridPoint  extends Model {
   @JoinColumn(name = "_id_grid_point")
   private Stand stand;
 
+  @ManyToOne
+  @JoinColumn(name = "fk_sheme_id")
+  private Sheme sheme;
 
   public static List<GridPoint> getGridPoints(){
     List<GridPoint> gridPointList = GridPoint.find.all();
