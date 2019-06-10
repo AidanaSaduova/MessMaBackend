@@ -22,7 +22,7 @@ import sun.rmi.runtime.Log;
 import swagger.SwaggerUtils;
 import com.fasterxml.jackson.core.type.TypeReference;
 
-import javax.validation.constraints.*;
+
 import play.Configuration;
 
 import swagger.SwaggerUtils.ApiAction;
@@ -43,7 +43,7 @@ public class DevelopersApiController extends Controller {
 
 
     @ApiAction
-    public Result setProject(){
+    public Result setProject() throws Exception{
 
         //region Variablendeklaration
         Logger.debug("- - - lets set this Projects - - -");
@@ -68,7 +68,7 @@ public class DevelopersApiController extends Controller {
 
         }
 
-        return ok();
+        return ok("you send me the project");
     };
 
     @ApiAction
@@ -118,8 +118,9 @@ public class DevelopersApiController extends Controller {
         Logger.debug("Somebody wants to know all available GridPoints ");
         List<GridPoint> gridPointList = GridPoint.getGridPoints();
 
-        String jsonString = "{\"startIndex\": 0, \"data\":" + Json.toJson(gridPointList).toString() + "}";
-        return ok(jsonString);
+        //String jsonString = "{\"startIndex\": 0, \"data\":" + Json.toJson(gridPointList).toString() + "}";
+        return ok(Json.toJson(gridPointList));
+        //return ok(jsonString);
     }
 
     @ApiAction
@@ -365,5 +366,9 @@ public class DevelopersApiController extends Controller {
 
         return ok("updateAccespointGrindpoint");
     }
+
+
+
+
 
 }
