@@ -35,12 +35,13 @@ public class GridPoint  extends Model {
   @Column(name="pos_y", nullable = true)
   private Integer posY = null;
 
-  @OneToOne
-  @JoinColumn(name = "_id_grid_point")
   private Stand stand;
 
-  @ManyToOne
-  @JoinColumn(name = "fk_sheme_id")
+
+  @Column(name = "fk_id_sheme")
+  private String sheme_id;
+
+  @JsonProperty("sheme")
   private Sheme sheme;
 
   public static List<GridPoint> getGridPoints(){
@@ -110,6 +111,32 @@ public class GridPoint  extends Model {
 
   public void setPosY(Integer posY) {
     this.posY = posY;
+  }
+
+
+  public Stand getStand() {
+    return stand;
+  }
+
+  public void setStand(Stand stand) {
+    this.stand = stand;
+  }
+
+  public String getSheme_id() {
+    return sheme_id;
+  }
+
+  public void setSheme_id(String sheme_id) {
+    this.sheme_id = sheme_id;
+  }
+
+
+  public Sheme getSheme() {
+    return sheme;
+  }
+
+  public void setSheme(Sheme sheme) {
+    this.sheme = sheme;
   }
 
 
