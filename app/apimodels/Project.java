@@ -35,7 +35,6 @@ public class Project extends Model {
     private String buildingInfo = null;
 
     @JsonProperty("shemes")
-    @Column(name="shemes")
     private List<Sheme> shemeList = new ArrayList<>();
 
     public String getTitle() {
