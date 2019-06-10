@@ -41,10 +41,11 @@ public class Stand   extends Model {
   @Column(name="logo", nullable = true)
   private String logo = null;
 
-  @JsonProperty("GridPoint")
+
   @Column(name="fk_id_grid_point")
   private String fk_id_grid_point;
 
+  @JsonProperty("GridPoint")
   private GridPoint gridPoint = null;
 
   public Stand id(Integer id) {
