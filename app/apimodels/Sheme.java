@@ -51,12 +51,11 @@ public class Sheme extends Model {
     private int gridCols;
 
     @JsonProperty("gridPoints")
-    @OneToMany
-    @Column(name="gridpoints", nullable = true)
     private List<GridPoint> gridPoints = new ArrayList<>();
 
-    @ManyToOne
     @JoinColumn(name = "fk_project")
+    private String projetct_id;
+
     private Project project;
 
     public Project getProject() {
