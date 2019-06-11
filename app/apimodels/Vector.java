@@ -32,12 +32,11 @@ public class Vector  extends Model {
 
   @JsonProperty("startPoint")
   @Column(name="fk_id_grid_point_start")
-  private String startPoint = null;
+  private int startPoint;
 
   @JsonProperty("endPoint")
   @Column(name="fk_id_grid_point_end")
-
-  private String endPoint = null;
+  private int endPoint;
 
   public Vector distance(Integer distance) {
     this.distance = distance;
@@ -62,7 +61,7 @@ public class Vector  extends Model {
     this.distance = distance;
   }
 
-  public Vector startPoint(String startPoint) {
+  public Vector startPoint(int startPoint) {
     this.startPoint = startPoint;
     return this;
   }
@@ -74,15 +73,15 @@ public class Vector  extends Model {
   }
 
   @Valid
-  public String getStartPoint() {
+  public int getStartPoint() {
     return startPoint;
   }
 
-  public void setStartPoint(String startPoint) {
+  public void setStartPoint(int startPoint) {
     this.startPoint = startPoint;
   }
 
-  public Vector endPoint(String endPoint) {
+  public Vector endPoint(int endPoint) {
     this.endPoint = endPoint;
     return this;
   }
@@ -92,11 +91,11 @@ public class Vector  extends Model {
    * @return endPoint
   **/
   @Valid
-  public String getEndPoint() {
+  public int getEndPoint() {
     return endPoint;
   }
 
-  public void setEndPoint(String endPoint) {
+  public void setEndPoint(int endPoint) {
     this.endPoint = endPoint;
   }
 

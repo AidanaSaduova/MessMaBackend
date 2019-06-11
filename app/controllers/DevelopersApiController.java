@@ -2,6 +2,7 @@ package controllers;
 
 import apimodels.*;
 
+import java.io.IOException;
 import java.util.*;
 
 import apimodels.Vector;
@@ -17,11 +18,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 import java.io.File;
 
+import scala.Int;
 import sun.rmi.runtime.Log;
 import swagger.SwaggerUtils;
 import com.fasterxml.jackson.core.type.TypeReference;
 
-import javax.validation.constraints.*;
+
 import play.Configuration;
 
 import swagger.SwaggerUtils.ApiAction;
@@ -40,6 +42,39 @@ public class DevelopersApiController extends Controller {
         this.configuration = configuration;
     }
 
+
+    @ApiAction
+    public Result setProject() throws Exception{
+
+        //region Variablendeklaration
+        Logger.debug("- - - lets set this Projects - - -");
+        Logger.debug("you send me ");
+        Logger.debug(request().body().asJson().toString());
+
+        JsonNode nodebody = request().body().asJson();
+        ReceivedProjects projectsList;
+
+        if (nodebody != null) {
+            try {
+            Logger.debug("lets mapp the JSON ProjectsList to our ReceivedProjectsList ");
+                projectsList = mapper.readValue(nodebody.toString(), ReceivedProjects.class);
+                if(projectsList.saveProject())
+                    return ok("New Project saved");
+                else
+                    return ok("Could not Save Project -> " + projectsList.toString());
+            } catch (IOException e) {
+                Logger.debug("- - - IOException in  setProject() projectsList = mapper.readValue()  - - -");
+                e.printStackTrace();
+            }
+
+        } else {
+            Logger.debug("no information you have give to me ( -.- )");
+            throw new IllegalArgumentException("'body' parameter is required");
+
+        }
+
+        return ok("you send me the project");
+    };
 
     @ApiAction
     public Result findAccessPointsbyMac(UUID mac) throws Exception {
@@ -88,8 +123,9 @@ public class DevelopersApiController extends Controller {
         Logger.debug("Somebody wants to know all available GridPoints ");
         List<GridPoint> gridPointList = GridPoint.getGridPoints();
 
-        String jsonString = "{\"startIndex\": 0, \"data\":" + Json.toJson(gridPointList).toString() + "}";
-        return ok(jsonString);
+        //String jsonString = "{\"startIndex\": 0, \"data\":" + Json.toJson(gridPointList).toString() + "}";
+        return ok(Json.toJson(gridPointList));
+        //return ok(jsonString);
     }
 
     @ApiAction
@@ -240,7 +276,7 @@ public class DevelopersApiController extends Controller {
 
         //Anlegen der Nodes
         for(GridPoint gp : gridPoints) {
-            nodeList.add(new Node(gp.getId()));
+            nodeList.add(new Node(Integer.toString(gp.getId())));
         }
 
         for(Node n : nodeList){
@@ -252,7 +288,7 @@ public class DevelopersApiController extends Controller {
         for(Node n : graph.getNodes()){
             for(Vector v : vectorList){
                 if(n.getName().equals(v.getStartPoint())){
-                    n.addDestination(graph.getNodeByName(v.getEndPoint()), v.getDistance());
+                    n.addDestination(graph.getNodeByName(Integer.toString(v.getEndPoint())), v.getDistance());
                 }
             }
         }
@@ -335,5 +371,9 @@ public class DevelopersApiController extends Controller {
 
         return ok("updateAccespointGrindpoint");
     }
+
+
+
+
 
 }

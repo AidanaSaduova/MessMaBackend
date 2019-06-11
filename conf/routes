@@ -9,6 +9,7 @@ GET     /api/getTestAPI                             controllers.DevelopersApiCon
 POST     /api/saveAccessPoint                     controllers.AdminsApiController.addNewAccessPoint()
 POST     /api/saveGridPoint                     controllers.AdminsApiController.addNewGridPoint()
 POST    /api/updateGridAccessPoint              controllers.DevelopersApiController.updateGridAccessPoint()
+POST    /api/setProject                         controllers.DevelopersApiController.setProject()
 
 
 #Functions for Developers API

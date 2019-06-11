@@ -41,10 +41,11 @@ public class Stand   extends Model {
   @Column(name="logo", nullable = true)
   private String logo = null;
 
-  @JsonProperty("GridPoint")
-  @Column(name="fk_id_grid_point")
-  private String fk_id_grid_point;
 
+  @Column(name="fk_id_grid_point")
+  private int fk_id_grid_point;
+
+  @JsonProperty("GridPoint")
   private GridPoint gridPoint = null;
 
   public Stand id(Integer id) {
@@ -57,13 +58,13 @@ public class Stand   extends Model {
     List<Stand> standList = Stand.find.all();
 
     for (Stand stand: standList) {
-      stand.gridPoint = GridPoint.getByID(stand.fk_id_grid_point);
+      stand.gridPoint = GridPoint.getByID(Integer.toString(stand.fk_id_grid_point));
     }
 
     return standList;
   }
 
-  public String getFk_id_grid_point(){
+  public int getFk_id_grid_point(){
     return this.fk_id_grid_point;
   }
 
@@ -149,8 +150,11 @@ public class Stand   extends Model {
     this.gridPoint = gridPoint;
   }
 
+  public void setFk_id_grid_point(int fk_id_grid_point) {
+    this.fk_id_grid_point = fk_id_grid_point;
+  }
 
-  public String getFkGridPointId(){return fk_id_grid_point;}
+  public int getFkGridPointId(){return fk_id_grid_point;}
 
   @Override
   public boolean equals(java.lang.Object o) {
