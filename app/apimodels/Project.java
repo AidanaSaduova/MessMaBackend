@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name="project")
+@Table(name="projects")
 public class Project extends Model {
 
 
