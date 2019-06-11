@@ -23,9 +23,12 @@ public class GridPoint  extends Model {
   public static final Finder<String, GridPoint> find = new Finder<>(GridPoint.class);
   @JsonProperty("id")
   @Id
-//  @OneToMany(mappedBy = "fk_id_gridPoint", cascade = CascadeType.ALL)
   @Column(name="_id_grid_point")
-  private String id = null;
+  private int id;
+
+  @JsonProperty("name")
+  @Column(name = "name")
+  private String name;
 
   @JsonProperty("posX")
   @Column(name="pos_x", nullable = true)
@@ -35,14 +38,13 @@ public class GridPoint  extends Model {
   @Column(name="pos_y", nullable = true)
   private Integer posY = null;
 
+  @JsonProperty("stand")
   private Stand stand;
 
 
   @Column(name = "fk_id_sheme")
   private String sheme_id;
 
-  @JsonProperty("sheme")
-  private Sheme sheme;
 
   public static List<GridPoint> getGridPoints(){
     List<GridPoint> gridPointList = GridPoint.find.all();
@@ -59,7 +61,7 @@ public class GridPoint  extends Model {
   }
 
 
-  public GridPoint id(String id) {
+  public GridPoint id(int id) {
     this.id = id;
     return this;
   }
@@ -69,13 +71,23 @@ public class GridPoint  extends Model {
    * @return id
   **/
   @NotNull
-  public String getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(int id) {
     this.id = id;
   }
+
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
 
   public GridPoint posX(Integer posX) {
     this.posX = posX;
@@ -128,15 +140,6 @@ public class GridPoint  extends Model {
 
   public void setSheme_id(String sheme_id) {
     this.sheme_id = sheme_id;
-  }
-
-
-  public Sheme getSheme() {
-    return sheme;
-  }
-
-  public void setSheme(Sheme sheme) {
-    this.sheme = sheme;
   }
 
 
