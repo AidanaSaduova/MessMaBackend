@@ -33,7 +33,7 @@ public class StandNavigationHistory {
         for(Stand stand:standsList){
             if(!standNavigation.containsKey(stand.getFk_id_grid_point())){
                 Logger.debug("New Stand fk =" +stand.getFk_id_grid_point());
-                standNavigation.put(stand.getFk_id_grid_point(), new TargetAs());
+                standNavigation.put(Integer.toString(stand.getFk_id_grid_point()), new TargetAs());
             }
 
             for(NavigateHistory navigateHistory:navigateHistoryList){
@@ -58,11 +58,11 @@ public class StandNavigationHistory {
     }
 
 
-    public int getStartCountForStandAtGridPointId(String gridPointId){
+    public int getStartCountForStandAtGridPointId(int gridPointId){
         return standNavigation.get(gridPointId).startCount;
     }
 
-    public int getTargetCountForStandAtGridPointId(String gridPointId){
+    public int getTargetCountForStandAtGridPointId(int gridPointId){
        return standNavigation.get(gridPointId).targetCount;
     }
 
