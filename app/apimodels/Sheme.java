@@ -18,7 +18,7 @@ import java.util.Objects;
 
 
 @Entity
-@Table(name="room")
+@Table(name="shemes")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class Sheme extends Model {
 
@@ -27,16 +27,12 @@ public class Sheme extends Model {
 
     @JsonProperty("id")
     @Id
-    @Column(name="id_sheme", nullable = true)
+    @Column(name="_id_sheme", nullable = true)
     private Integer id = null;
 
     @JsonProperty("name")
     @Column(name="name", nullable = true)
     private String name = null;
-
-    @JsonProperty("Path")
-    @Column(name="path", nullable = true)
-    private String path = null;
 
     @JsonProperty("screenshot")
     @Column(name = "plan", nullable = true)
@@ -51,12 +47,37 @@ public class Sheme extends Model {
     private int gridCols;
 
     @JsonProperty("gridPoints")
-    private List<GridPoint> gridPoints = new ArrayList<>();
+    private List<GridPoint> gridPoints;
 
-    @JoinColumn(name = "fk_project")
-    private String projetct_id;
+    @JsonProperty("vectors")
+    private List<Vector> vectors;
+
+    @Transient
+    @JsonProperty("Path")
+    private String path = null;
+
+    @Column(name = "fk_id_project")
+    private String project_id;
 
     private Project project;
+
+    public List<Vector> getVectors() {
+        return vectors;
+    }
+
+    public void setVectors(List<Vector> vectors) {
+        this.vectors = vectors;
+    }
+
+    public String getProjetct_id() {
+        return project_id;
+    }
+
+    public void setProjetct_id(String projetct_id) {
+        this.project_id = projetct_id;
+    }
+
+
 
     public Project getProject() {
         return project;
@@ -114,6 +135,7 @@ public class Sheme extends Model {
     }
 
 
+
     public String getPath() {
         return path;
     }
@@ -121,6 +143,7 @@ public class Sheme extends Model {
     public void setPath(String path) {
         this.path = path;
     }
+
 
     public String getPlan() {
         return plan;
