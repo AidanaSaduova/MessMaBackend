@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 import java.io.File;
 
+import scala.Int;
 import sun.rmi.runtime.Log;
 import swagger.SwaggerUtils;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -57,6 +58,10 @@ public class DevelopersApiController extends Controller {
             try {
             Logger.debug("lets mapp the JSON ProjectsList to our ReceivedProjectsList ");
                 projectsList = mapper.readValue(nodebody.toString(), ReceivedProjects.class);
+                if(projectsList.saveProject())
+                    return ok("New Project saved");
+                else
+                    return ok("Could not Save Project -> " + projectsList.toString());
             } catch (IOException e) {
                 Logger.debug("- - - IOException in  setProject() projectsList = mapper.readValue()  - - -");
                 e.printStackTrace();
@@ -271,7 +276,7 @@ public class DevelopersApiController extends Controller {
 
         //Anlegen der Nodes
         for(GridPoint gp : gridPoints) {
-            nodeList.add(new Node(gp.getId()));
+            nodeList.add(new Node(Integer.toString(gp.getId())));
         }
 
         for(Node n : nodeList){
@@ -283,7 +288,7 @@ public class DevelopersApiController extends Controller {
         for(Node n : graph.getNodes()){
             for(Vector v : vectorList){
                 if(n.getName().equals(v.getStartPoint())){
-                    n.addDestination(graph.getNodeByName(v.getEndPoint()), v.getDistance());
+                    n.addDestination(graph.getNodeByName(Integer.toString(v.getEndPoint())), v.getDistance());
                 }
             }
         }
