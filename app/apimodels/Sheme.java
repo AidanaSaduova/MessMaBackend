@@ -57,7 +57,7 @@ public class Sheme extends Model {
     private String path = null;
 
     @Column(name = "fk_id_project")
-    private String project_id;
+    private int project_id;
 
     private Project project;
 
@@ -69,11 +69,11 @@ public class Sheme extends Model {
         this.vectors = vectors;
     }
 
-    public String getProjetct_id() {
+    public int getProjetct_id() {
         return project_id;
     }
 
-    public void setProjetct_id(String projetct_id) {
+    public void setProjetct_id(int projetct_id) {
         this.project_id = projetct_id;
     }
 
