@@ -2,6 +2,7 @@ package apimodels;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.ebean.Ebean;
+import io.ebean.Expr;
 import play.Logger;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class ReceivedProjects {
 
                 for(Sheme sheme: project.getShemeList()){
 
-                    sheme.setProjetct_id(project.getId().toString());
+                    sheme.setProjetct_id(project.getId());
 
                     if(saveSheme(sheme))
                         continue;
@@ -117,10 +118,18 @@ public class ReceivedProjects {
 
         Logger.debug("Save Vector to DB -> " + vector.toString());
 
-        if(!Ebean.find(Vector.class).where().equals(vector))
+        vector.createVectorId();
+
+        Vector foundVector = Ebean.find(Vector.class, vector.getId());
+
+        if(foundVector == null){
             Ebean.save(vector);
-        else
-            Ebean.update(vector);
+        }
+
+        else{
+            foundVector.setDistance(5);
+            foundVector.save();
+        }
 
         return true;
     }
