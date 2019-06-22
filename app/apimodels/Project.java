@@ -20,7 +20,7 @@ public class Project extends Model {
     @JsonProperty("id")
     @Id
     @Column(name="_id_project")
-    private Integer id = null;
+    private int id;
 
     @JsonProperty("title")
     @Column(name="title")
@@ -36,6 +36,27 @@ public class Project extends Model {
 
     @JsonProperty("shemes")
     private List<Sheme> shemeList = new ArrayList<>();
+
+
+    public Project id(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Get id
+     * @return id
+     **/
+    @NotNull
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
 
     public String getTitle() {
         return title;
@@ -72,27 +93,6 @@ public class Project extends Model {
     public static Project getByID(Integer ID){
         return find.byId(ID);
     }
-
-
-    public Project id(Integer id) {
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * Get id
-     * @return id
-     **/
-    @NotNull
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-
 
 
     @Override
