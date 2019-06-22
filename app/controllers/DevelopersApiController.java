@@ -7,8 +7,13 @@ import java.util.*;
 
 import apimodels.Vector;
 import com.fasterxml.jackson.databind.ObjectReader;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import io.ebean.Ebean;
 import play.Logger;
+
+
+import play.db.Databases;
+import play.db.evolutions.Evolutions;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -16,17 +21,15 @@ import play.mvc.Http;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
-import java.io.File;
 
-import scala.Int;
-import sun.rmi.runtime.Log;
-import swagger.SwaggerUtils;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 
 import play.Configuration;
 
 import swagger.SwaggerUtils.ApiAction;
+
+import javax.sql.DataSource;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-01-12T15:21:03.989+01:00")
 public class DevelopersApiController extends Controller {
@@ -100,7 +103,55 @@ public class DevelopersApiController extends Controller {
     public Result getTestAPI() throws Exception {
 
         Logger.debug("Somebody called the TestAPI ! ( ).( ) !");
-        return ok("Hy");
+        return ok("Don't worry... we are still alive ! ( ).( ) !");
+    }
+
+
+    @ApiAction
+    public Result needFreshDB() throws Exception {
+
+        Logger.info("Somebody requested a fresh DB");
+
+        List<Vector> vectorList = Vector.getAllVectors();
+        if(!vectorList.isEmpty()){
+            Ebean.deleteAll(vectorList);
+        }
+
+        List<Stand> standList = Stand.getStands();
+        if(!standList.isEmpty()){
+            Ebean.deleteAll(standList);
+        }
+
+        List<GridPoint> gridPointList = GridPoint.getGridPoints();
+        if(!gridPointList.isEmpty()){
+            Ebean.deleteAll(gridPointList);
+        }
+
+        List<Sheme> shemeList = Sheme.getShemes();
+        if(shemeList.isEmpty()){
+            Ebean.deleteAll(shemeList);
+        }
+
+        List<Project> projectList = Project.find.all();
+        if (!projectList.isEmpty()){
+            Ebean.deleteAll(projectList);
+        }
+
+        /**
+        Databases.inMemory("jdbc:h2:mem:play").getDataSource();
+
+        javax.sql.DataSource dataSource = Databases.inMemory("jdbc:h2:mem:play").getDataSource();
+
+        Evolutions.cleanupEvolutions(dataSource);
+
+        Databases.inMemory("jdbc:h2:mem:play").getDataSource();
+
+        Databases.inMemoryWith("url","jdbc:h2:mem:play");
+        */
+
+        Logger.info("DB has been cleaned");
+
+        return ok("DB has been cleand :)");
     }
 
     @ApiAction
