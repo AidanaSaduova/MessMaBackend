@@ -25,8 +25,11 @@ import javax.validation.constraints.*;
 public class Vector  extends Model {
   public static final Finder<Long, Vector> find = new Finder<>(Vector.class);
 
-  @JsonProperty("distance")
+  @Id
+  @Column(name = "_id_vector")
+  private String id = null;
 
+  @JsonProperty("distance")
   @Column(name="distance")
   private Integer distance = null;
 
@@ -44,6 +47,17 @@ public class Vector  extends Model {
   }
 
 
+  public void createVectorId(){
+    this.id = getStartPoint()+"-"+getEndPoint();
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String _id_vector) {
+    this.id = _id_vector;
+  }
 
   public static List<Vector> getAllVectors(){
     return find.all();
