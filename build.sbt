@@ -10,8 +10,11 @@ playEbeanModels in Compile := Seq("apimodels.*")
 
 libraryDependencies ++= Seq(
   javaJdbc,
-  "mysql"   %  "mysql-connector-java" % "5.1.35"
+  "mysql"   %  "mysql-connector-java" % "5.1.35",
+  "com.h2database" % "h2" % "1.4.192"
 )
+
+PlayKeys.playDefaultPort := 9001
 
 sources in (Compile, doc) ~= (_ filter (_.getName endsWith ".java"))
 
